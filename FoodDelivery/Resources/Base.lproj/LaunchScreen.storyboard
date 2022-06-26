@@ -26,7 +26,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="BY3-UZ-1lt"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="41"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="39"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>

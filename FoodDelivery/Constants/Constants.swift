@@ -8,5 +8,5 @@
 import UIKit
 
 public enum Constants {
-    static let padding: CGFloat = 20
+
 }

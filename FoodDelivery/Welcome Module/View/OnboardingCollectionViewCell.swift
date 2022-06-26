@@ -11,11 +11,14 @@ class OnboardingSlideCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "OnboardingSlideCollectionViewCell"
     
+    private let padding: CGFloat = 20
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.spacing = 20
+        stackView.distribution = .equalCentering
+        stackView.spacing = padding
         return stackView
     }()
     
@@ -74,13 +77,13 @@ class OnboardingSlideCollectionViewCell: UICollectionViewCell {
         titleLabel.prepareForAutoLayout()
         subtitleLabel.prepareForAutoLayout()
         
-        let padding = Constants.padding
+        let padding = padding
         
         let constraints = [
             stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             stackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -padding),
             stackView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: padding),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding*2),
         ]
         
         NSLayoutConstraint.activate(constraints)

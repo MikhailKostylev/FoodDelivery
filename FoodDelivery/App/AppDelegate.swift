@@ -11,8 +11,18 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        setupNavigationBar()
 
         return true
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupNavigationBar() {
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().tintColor = .label
     }
 
     // MARK: UISceneSession Lifecycle

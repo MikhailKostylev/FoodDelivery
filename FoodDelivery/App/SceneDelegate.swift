@@ -21,10 +21,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func setupWindow(scene: UIScene) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        let rootVC = chooseRootVC()
+        
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = OnboardingViewController()
+        window?.rootViewController = rootVC
         window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
+    }
+    
+    private func chooseRootVC() -> UIViewController {
+        if UserDefaults.wasAppLaunched() {
+            let mainVC = MainViewController()
+            return UINavigationController(rootViewController: mainVC)
+        } else {
+            let onboardingVC = OnboardingViewController()
+            return onboardingVC
+        }
     }
     
     // MARK: - Scene Lifecycle
