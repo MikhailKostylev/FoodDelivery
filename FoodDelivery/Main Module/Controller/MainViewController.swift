@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    private var categories: [FoodCategory] = [
+    private var categories: [DishCategory] = [
         .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/"),
         .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/"),
         .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/"),
@@ -21,13 +21,25 @@ class MainViewController: UIViewController {
         .init(id: "id9", name: "Dish9", image: "https://source.unsplash.com/random/"),
     ]
     
+    private var populars: [Dish] = [
+        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 111),
+        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 222),
+        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 333),
+        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 444),
+        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 555),
+        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 777),
+        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 888),
+        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 999)
+    ]
+    
     private let padding: CGFloat = 16
     private let sectionInset: CGFloat = 15
     private let collection1ViewHeightMultiplier: CGFloat = 0.25
     private let collection2ViewHeightMultiplier: CGFloat = 0.45
     private let collection3ViewHeightMultiplier: CGFloat = 0.25
-    private let foodCategoryCellHeightDivider: CGFloat = 3.7
-    private let foodCategoryCellWidth: CGFloat = 150
+    private let categoryCellHeightDivider: CGFloat = 3.7
+    private let popularCellHeHeightDivider: CGFloat = 1.35
+    private let categoryCellWidth: CGFloat = 150
     
     // MARK: - UI elements
     
@@ -40,27 +52,12 @@ class MainViewController: UIViewController {
     
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
         return view
     }()
     
-    private lazy var foodCategoryView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
-    
-    private lazy var popularDishesView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
-    
-    private lazy var chefsSpecialsView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
+    private lazy var foodCategoryView = UIView()
+    private lazy var popularDishesView = UIView()
+    private lazy var chefsSpecialsView = UIView()
     
     private lazy var foodCategoryLabel: UILabel = {
         let label = UILabel()
@@ -92,51 +89,51 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    private lazy var collectionView1: UICollectionView = {
+    private lazy var categoryCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: categoryCellWidth, height: (view.height*collection1ViewHeightMultiplier)/categoryCellHeightDivider)
         layout.sectionInset = UIEdgeInsets(top: sectionInset/3, left: sectionInset, bottom: 0, right: sectionInset)
-        layout.itemSize = CGSize(width: foodCategoryCellWidth, height: (view.height*collection1ViewHeightMultiplier)/foodCategoryCellHeightDivider)
         layout.minimumLineSpacing = sectionInset
-        layout.minimumInteritemSpacing = 0
+        layout.minimumInteritemSpacing = sectionInset/3
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(
-            FoodCategoryCollectionViewCell.self,
-            forCellWithReuseIdentifier: FoodCategoryCollectionViewCell.id
+            CategoryCollectionViewCell.self,
+            forCellWithReuseIdentifier: CategoryCollectionViewCell.id
         )
         return collectionView
     }()
     
-    private lazy var collectionView2: UICollectionView = {
+    private lazy var popularCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: view.width, height: view.height*collection2ViewHeightMultiplier)
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
+        layout.itemSize = CGSize(width: (view.width/2)-sectionInset, height: (view.height*collection2ViewHeightMultiplier)/popularCellHeHeightDivider)
+        layout.sectionInset = UIEdgeInsets(top: sectionInset/3, left: sectionInset, bottom: 0, right: sectionInset)
+        layout.minimumLineSpacing = sectionInset
+        layout.minimumInteritemSpacing = sectionInset/3
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.clipsToBounds = true
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(
-            PopularDishesCollectionViewCell.self,
-            forCellWithReuseIdentifier: PopularDishesCollectionViewCell.id
+            DishBannerCollectionViewCell.self,
+            forCellWithReuseIdentifier: DishBannerCollectionViewCell.id
         )
         return collectionView
     }()
     
-    private lazy var collectionView3: UICollectionView = {
+    private lazy var specialCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: view.width, height: view.height*collection3ViewHeightMultiplier)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         
@@ -191,23 +188,29 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories.count
+        switch collectionView {
+        case categoryCollectionView: return categories.count
+        case popularCollectionView: return populars.count
+        case specialCollectionView: return categories.count
+        default: return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
-        case collectionView1:
+        case categoryCollectionView:
             let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: FoodCategoryCollectionViewCell.id,
-                for: indexPath) as! FoodCategoryCollectionViewCell
+                withReuseIdentifier: CategoryCollectionViewCell.id,
+                for: indexPath) as! CategoryCollectionViewCell
             cell.configure(category: categories[indexPath.row])
             return cell
-        case collectionView2:
+        case popularCollectionView:
             let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: PopularDishesCollectionViewCell.id,
-                for: indexPath) as! PopularDishesCollectionViewCell
+                withReuseIdentifier: DishBannerCollectionViewCell.id,
+                for: indexPath) as! DishBannerCollectionViewCell
+            cell.configure(dish: populars[indexPath.row])
             return cell
-        case collectionView3:
+        case specialCollectionView:
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ChefsSpecialsCollectionViewCell.id,
                 for: indexPath) as! ChefsSpecialsCollectionViewCell
@@ -229,11 +232,11 @@ extension MainViewController {
         containerView.addSubview(popularDishesView)
         containerView.addSubview(chefsSpecialsView)
         foodCategoryView.addSubview(foodCategoryLabel)
-        foodCategoryView.addSubview(collectionView1)
+        foodCategoryView.addSubview(categoryCollectionView)
         popularDishesView.addSubview(popularDishesLabel)
-        popularDishesView.addSubview(collectionView2)
+        popularDishesView.addSubview(popularCollectionView)
         chefsSpecialsView.addSubview(chefsSpecialsLabel)
-        chefsSpecialsView.addSubview(collectionView3)
+        chefsSpecialsView.addSubview(specialCollectionView)
         
         scrollView.prepareForAutoLayout()
         containerView.prepareForAutoLayout()
@@ -243,9 +246,9 @@ extension MainViewController {
         foodCategoryLabel.prepareForAutoLayout()
         popularDishesLabel.prepareForAutoLayout()
         chefsSpecialsLabel.prepareForAutoLayout()
-        collectionView1.prepareForAutoLayout()
-        collectionView2.prepareForAutoLayout()
-        collectionView3.prepareForAutoLayout()
+        categoryCollectionView.prepareForAutoLayout()
+        popularCollectionView.prepareForAutoLayout()
+        specialCollectionView.prepareForAutoLayout()
         
         let constraints = [
             scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -267,10 +270,10 @@ extension MainViewController {
             foodCategoryLabel.widthAnchor.constraint(equalTo: foodCategoryView.widthAnchor, constant: -padding*2),
             foodCategoryLabel.topAnchor.constraint(equalTo: foodCategoryView.topAnchor, constant: padding),
             
-            collectionView1.centerXAnchor.constraint(equalTo: foodCategoryView.centerXAnchor),
-            collectionView1.widthAnchor.constraint(equalTo: foodCategoryView.widthAnchor),
-            collectionView1.topAnchor.constraint(equalTo: foodCategoryLabel.bottomAnchor, constant: padding/2),
-            collectionView1.bottomAnchor.constraint(equalTo: foodCategoryView.bottomAnchor),
+            categoryCollectionView.centerXAnchor.constraint(equalTo: foodCategoryView.centerXAnchor),
+            categoryCollectionView.widthAnchor.constraint(equalTo: foodCategoryView.widthAnchor),
+            categoryCollectionView.topAnchor.constraint(equalTo: foodCategoryLabel.bottomAnchor, constant: padding/2),
+            categoryCollectionView.bottomAnchor.constraint(equalTo: foodCategoryView.bottomAnchor),
             
             popularDishesView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             popularDishesView.widthAnchor.constraint(equalTo: containerView.widthAnchor),
@@ -281,10 +284,10 @@ extension MainViewController {
             popularDishesLabel.widthAnchor.constraint(equalTo: popularDishesView.widthAnchor, constant: -padding*2),
             popularDishesLabel.topAnchor.constraint(equalTo: popularDishesView.topAnchor, constant: padding),
             
-            collectionView2.centerXAnchor.constraint(equalTo: popularDishesView.centerXAnchor),
-            collectionView2.widthAnchor.constraint(equalTo: popularDishesView.widthAnchor),
-            collectionView2.topAnchor.constraint(equalTo: popularDishesLabel.bottomAnchor, constant: padding/2),
-            collectionView2.bottomAnchor.constraint(equalTo: popularDishesView.bottomAnchor),
+            popularCollectionView.centerXAnchor.constraint(equalTo: popularDishesView.centerXAnchor),
+            popularCollectionView.widthAnchor.constraint(equalTo: popularDishesView.widthAnchor),
+            popularCollectionView.topAnchor.constraint(equalTo: popularDishesLabel.bottomAnchor, constant: padding/2),
+            popularCollectionView.bottomAnchor.constraint(equalTo: popularDishesView.bottomAnchor),
             
             chefsSpecialsView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             chefsSpecialsView.widthAnchor.constraint(equalTo: containerView.widthAnchor),
@@ -295,10 +298,10 @@ extension MainViewController {
             chefsSpecialsLabel.widthAnchor.constraint(equalTo: chefsSpecialsView.widthAnchor, constant: -padding*2),
             chefsSpecialsLabel.topAnchor.constraint(equalTo: chefsSpecialsView.topAnchor, constant: padding),
             
-            collectionView3.centerXAnchor.constraint(equalTo: chefsSpecialsView.centerXAnchor),
-            collectionView3.widthAnchor.constraint(equalTo: chefsSpecialsView.widthAnchor),
-            collectionView3.topAnchor.constraint(equalTo: chefsSpecialsLabel.bottomAnchor, constant: padding/2),
-            collectionView3.bottomAnchor.constraint(equalTo: chefsSpecialsView.bottomAnchor),
+            specialCollectionView.centerXAnchor.constraint(equalTo: chefsSpecialsView.centerXAnchor),
+            specialCollectionView.widthAnchor.constraint(equalTo: chefsSpecialsView.widthAnchor),
+            specialCollectionView.topAnchor.constraint(equalTo: chefsSpecialsLabel.bottomAnchor, constant: padding/2),
+            specialCollectionView.bottomAnchor.constraint(equalTo: chefsSpecialsView.bottomAnchor),
         ]
         NSLayoutConstraint.activate(constraints)
     }

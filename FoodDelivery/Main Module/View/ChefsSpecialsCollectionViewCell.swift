@@ -13,7 +13,6 @@ class ChefsSpecialsCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .appYellow
     }
     
     required init?(coder: NSCoder) {
