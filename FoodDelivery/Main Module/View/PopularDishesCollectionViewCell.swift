@@ -9,7 +9,7 @@ import UIKit
 
 class PopularDishesCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "PopularDishesCollectionViewCell"
+    static let id = String(describing: PopularDishesCollectionViewCell.self)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

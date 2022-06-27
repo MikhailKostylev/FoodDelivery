@@ -9,7 +9,7 @@ import UIKit
 
 class ChefsSpecialsCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "ChefsSpecialsCollectionViewCell"
+    static let id = String(describing: ChefsSpecialsCollectionViewCell.self)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

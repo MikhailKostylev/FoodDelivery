@@ -9,11 +9,6 @@ import UIKit
 
 extension UIView {
     
-    @discardableResult func prepareForAutoLayout() -> Self {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        return self
-    }
-    
     public var width: CGFloat {
         return frame.size.width
     }
@@ -36,5 +31,11 @@ extension UIView {
     
     public var right: CGFloat {
         return frame.size.width + frame.origin.x
+    }
+    
+    @discardableResult
+    func prepareForAutoLayout() -> Self {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        return self
     }
 }

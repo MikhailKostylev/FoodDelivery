@@ -9,10 +9,25 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    private var categories: [FoodCategory] = [
+        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/"),
+        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/"),
+        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/"),
+        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/"),
+        .init(id: "id5", name: "Dish5", image: "https://source.unsplash.com/random/"),
+        .init(id: "id6", name: "Dish6", image: "https://source.unsplash.com/random/"),
+        .init(id: "id7", name: "Dish7", image: "https://source.unsplash.com/random/"),
+        .init(id: "id8", name: "Dish8", image: "https://source.unsplash.com/random/"),
+        .init(id: "id9", name: "Dish9", image: "https://source.unsplash.com/random/"),
+    ]
+    
     private let padding: CGFloat = 16
+    private let sectionInset: CGFloat = 15
     private let collection1ViewHeightMultiplier: CGFloat = 0.25
     private let collection2ViewHeightMultiplier: CGFloat = 0.45
     private let collection3ViewHeightMultiplier: CGFloat = 0.25
+    private let foodCategoryCellHeightDivider: CGFloat = 3.7
+    private let foodCategoryCellWidth: CGFloat = 150
     
     // MARK: - UI elements
     
@@ -23,10 +38,29 @@ class MainViewController: UIViewController {
         return scrollView
     }()
     
-    private lazy var containerView = UIView()
-    private lazy var foodCategoryView = UIView()
-    private lazy var popularDishesView = UIView()
-    private lazy var chefsSpecialsView = UIView()
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private lazy var foodCategoryView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private lazy var popularDishesView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private lazy var chefsSpecialsView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
     
     private lazy var foodCategoryLabel: UILabel = {
         let label = UILabel()
@@ -61,19 +95,20 @@ class MainViewController: UIViewController {
     private lazy var collectionView1: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: view.width, height: view.height * collection1ViewHeightMultiplier)
-        layout.minimumLineSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: sectionInset/3, left: sectionInset, bottom: 0, right: sectionInset)
+        layout.itemSize = CGSize(width: foodCategoryCellWidth, height: (view.height*collection1ViewHeightMultiplier)/foodCategoryCellHeightDivider)
+        layout.minimumLineSpacing = sectionInset
         layout.minimumInteritemSpacing = 0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = true
-        collectionView.isPagingEnabled = true
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.clipsToBounds = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(
             FoodCategoryCollectionViewCell.self,
-            forCellWithReuseIdentifier: FoodCategoryCollectionViewCell.identifier
+            forCellWithReuseIdentifier: FoodCategoryCollectionViewCell.id
         )
         return collectionView
     }()
@@ -82,18 +117,17 @@ class MainViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: view.width, height: view.height * collection2ViewHeightMultiplier)
+        layout.itemSize = CGSize(width: view.width, height: view.height*collection2ViewHeightMultiplier)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = true
-        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(
             PopularDishesCollectionViewCell.self,
-            forCellWithReuseIdentifier: PopularDishesCollectionViewCell.identifier
+            forCellWithReuseIdentifier: PopularDishesCollectionViewCell.id
         )
         return collectionView
     }()
@@ -102,18 +136,17 @@ class MainViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: view.width, height: view.height * collection3ViewHeightMultiplier)
+        layout.itemSize = CGSize(width: view.width, height: view.height*collection3ViewHeightMultiplier)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = true
-        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(
             ChefsSpecialsCollectionViewCell.self,
-            forCellWithReuseIdentifier: ChefsSpecialsCollectionViewCell.identifier
+            forCellWithReuseIdentifier: ChefsSpecialsCollectionViewCell.id
         )
         return collectionView
     }()
@@ -158,24 +191,25 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case collectionView1:
             let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: FoodCategoryCollectionViewCell.identifier,
+                withReuseIdentifier: FoodCategoryCollectionViewCell.id,
                 for: indexPath) as! FoodCategoryCollectionViewCell
+            cell.configure(category: categories[indexPath.row])
             return cell
         case collectionView2:
             let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: PopularDishesCollectionViewCell.identifier,
+                withReuseIdentifier: PopularDishesCollectionViewCell.id,
                 for: indexPath) as! PopularDishesCollectionViewCell
             return cell
         case collectionView3:
             let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: ChefsSpecialsCollectionViewCell.identifier,
+                withReuseIdentifier: ChefsSpecialsCollectionViewCell.id,
                 for: indexPath) as! ChefsSpecialsCollectionViewCell
             return cell
         default:

@@ -8,7 +8,5 @@
 import Foundation
 
 struct OnboardingSlideModel {
-    let title: String
-    let subtitle: String
-    let image: String
+    let title, subtitle, image: String
 }
