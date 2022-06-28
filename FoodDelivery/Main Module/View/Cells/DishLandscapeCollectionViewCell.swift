@@ -79,7 +79,7 @@ class DishLandscapeCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
-    func configure(model: DishLandscape) {
+    func configure(model: Dish) {
         imageView.kf.setImage(with: model.image?.asUrl)
         titleLabel.text = model.name
         descriptionLabel.text = model.description

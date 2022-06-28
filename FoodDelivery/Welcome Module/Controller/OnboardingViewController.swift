@@ -9,82 +9,30 @@ import UIKit
 
 class OnboardingViewController: UIViewController {
     
+    private var onboardingView: OnboardingView!
+    
     private var slides = [OnboardingSlideModel]()
     var currentPage = 0 {
         didSet {
-            pageControl.currentPage = currentPage
+            onboardingView.pageControl.currentPage = currentPage
             if currentPage == slides.count - 1 {
-                nextButton.setTitle("Get Started", for: .normal)
-                skipButton.isHidden = true
+                onboardingView.nextButton.setTitle("Get Started", for: .normal)
+                onboardingView.skipButton.isHidden = true
             } else {
-                nextButton.setTitle("Next", for: .normal)
-                skipButton.isHidden = false
+                onboardingView.nextButton.setTitle("Next", for: .normal)
+                onboardingView.skipButton.isHidden = false
             }
         }
     }
     
-    private let collectionHeightMultiplier: CGFloat = 0.8
-    private let buttonHeight: CGFloat = 50
-    private let buttonWidth: CGFloat = 150
-    private let padding: CGFloat = 20
-    private let cornerRadius: CGFloat = 30
-    private let buttonCornerRadius: CGFloat = 15
-    
-    // MARK: - UI elements
-    
-    private var collectionView: UICollectionView!
-    
-    private lazy var containerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .appYellow
-        view.layer.cornerRadius = cornerRadius
-        return view
-    }()
-    
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.spacing = padding
-        return stackView
-    }()
-    
-    private lazy var pageControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.isEnabled = false
-        pageControl.currentPageIndicatorTintColor = .appRed
-        pageControl.pageIndicatorTintColor = .appOrange
-        return pageControl
-    }()
-    
-    private lazy var nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Next", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 22, weight: .medium)
-        button.backgroundColor = .appRed
-        button.layer.cornerRadius = buttonCornerRadius
-        button.layer.masksToBounds = true
-        return button
-    }()
-    
-    private lazy var skipButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("skip", for: .normal)
-        button.setTitleColor(.appRed, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 22, weight: .medium)
-        return button
-    }()
-    
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
+        setupOnboardingView()
         setupSlidesContent()
         setupPageControl()
-        setupCollectionView()
-        setupLayout()
         addActions()
     }
     
@@ -94,23 +42,19 @@ class OnboardingViewController: UIViewController {
         view.backgroundColor = .white
     }
     
-    private func setupCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: view.width, height: view.height * collectionHeightMultiplier)
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isPagingEnabled = true
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(
-            OnboardingSlideCollectionViewCell.self,
-            forCellWithReuseIdentifier: OnboardingSlideCollectionViewCell.identifier
+    private func setupOnboardingView() {
+        onboardingView = OnboardingView(
+            frame: CGRect(
+                x: 0,
+                y: 0,
+                width: view.width,
+                height: view.height
+            )
         )
+        
+        view.addSubview(onboardingView)
+        onboardingView.collectionView.dataSource = self
+        onboardingView.collectionView.delegate = self
     }
     
     private func setupSlidesContent() {
@@ -125,14 +69,14 @@ class OnboardingViewController: UIViewController {
     }
     
     private func setupPageControl() {
-        pageControl.numberOfPages = slides.count
+        onboardingView.pageControl.numberOfPages = slides.count
     }
     
     // MARK: - Actions
     
     private func addActions() {
-        nextButton.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
-        skipButton.addTarget(self, action: #selector(didTapSkipButton), for: .touchUpInside)
+        onboardingView.nextButton.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
+        onboardingView.skipButton.addTarget(self, action: #selector(didTapSkipButton), for: .touchUpInside)
     }
     
     private func goToMainVC() {
@@ -148,7 +92,7 @@ class OnboardingViewController: UIViewController {
         } else {
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
-            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            onboardingView.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
     }
     
@@ -173,51 +117,5 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         currentPage = Int(scrollView.contentOffset.x / scrollView.width)
-    }
-}
-
-// MARK: - Layout
-
-extension OnboardingViewController {
-    
-    private func setupLayout() {
-        view.addSubview(collectionView)
-        view.addSubview(containerView)
-        view.addSubview(stackView)
-        view.addSubview(skipButton)
-        stackView.addArrangedSubview(pageControl)
-        stackView.addArrangedSubview(nextButton)
-        
-        collectionView.prepareForAutoLayout()
-        containerView.prepareForAutoLayout()
-        stackView.prepareForAutoLayout()
-        pageControl.prepareForAutoLayout()
-        nextButton.prepareForAutoLayout()
-        skipButton.prepareForAutoLayout()
-                
-        let constraints = [
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: collectionHeightMultiplier),
-            
-            containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            containerView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            containerView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: cornerRadius),
-            
-            stackView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: padding),
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            
-            nextButton.widthAnchor.constraint(equalToConstant: buttonWidth),
-            nextButton.heightAnchor.constraint(equalToConstant: buttonHeight),
-            
-            skipButton.topAnchor.constraint(equalTo: nextButton.topAnchor),
-            skipButton.leadingAnchor.constraint(equalTo: nextButton.trailingAnchor),
-            skipButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            skipButton.heightAnchor.constraint(equalToConstant: buttonHeight)
-        ]
-        NSLayoutConstraint.activate(constraints)
     }
 }

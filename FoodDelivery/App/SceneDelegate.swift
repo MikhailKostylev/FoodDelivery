@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func setupWindow(scene: UIScene) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let rootVC = DishDetailViewController()
+        let rootVC = chooseRootVC()
         
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = rootVC

@@ -23,11 +23,12 @@
 		1FE2D0AB286A07F400AE9F89 /* DishCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2D0AA286A07F400AE9F89 /* DishCategory.swift */; };
 		1FE2D0AD286A0AB100AE9F89 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2D0AC286A0AB100AE9F89 /* String+Extension.swift */; };
 		1FE2D0AF286A0F7600AE9F89 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2D0AE286A0F7600AE9F89 /* CardView.swift */; };
-		1FE2D0B1286A464D00AE9F89 /* DishBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2D0B0286A464D00AE9F89 /* DishBanner.swift */; };
+		1FE2D0B1286A464D00AE9F89 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2D0B0286A464D00AE9F89 /* Dish.swift */; };
 		1FE5EA4E28685C800018B0C2 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5EA4D28685C800018B0C2 /* UserDefaults+Extension.swift */; };
-		1FF897DD286B2CAA00FAEF77 /* DishLandscape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF897DC286B2CAA00FAEF77 /* DishLandscape.swift */; };
 		1FF897E2286B4B9900FAEF77 /* DishDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF897E1286B4B9900FAEF77 /* DishDetailViewController.swift */; };
 		1FF897E8286B6ADC00FAEF77 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF897E7286B6ADC00FAEF77 /* MainView.swift */; };
+		1FF897EB286B8D8F00FAEF77 /* DishDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF897EA286B8D8F00FAEF77 /* DishDetailView.swift */; };
+		1FF897EE286B90D300FAEF77 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF897ED286B90D300FAEF77 /* OnboardingView.swift */; };
 		FAE954B300CB4254904D451A /* Pods_FoodDelivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184FDED38100F749E97FB8E4 /* Pods_FoodDelivery.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,11 +53,12 @@
 		1FE2D0AA286A07F400AE9F89 /* DishCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategory.swift; sourceTree = "<group>"; };
 		1FE2D0AC286A0AB100AE9F89 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1FE2D0AE286A0F7600AE9F89 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		1FE2D0B0286A464D00AE9F89 /* DishBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishBanner.swift; sourceTree = "<group>"; };
+		1FE2D0B0286A464D00AE9F89 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		1FE5EA4D28685C800018B0C2 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
-		1FF897DC286B2CAA00FAEF77 /* DishLandscape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishLandscape.swift; sourceTree = "<group>"; };
 		1FF897E1286B4B9900FAEF77 /* DishDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailViewController.swift; sourceTree = "<group>"; };
 		1FF897E7286B6ADC00FAEF77 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1FF897EA286B8D8F00FAEF77 /* DishDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailView.swift; sourceTree = "<group>"; };
+		1FF897ED286B90D300FAEF77 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		6978C9485C60C36483FD4320 /* Pods-FoodDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDelivery.release.xcconfig"; path = "Target Support Files/Pods-FoodDelivery/Pods-FoodDelivery.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				1FA3594728676C0C00F2750D /* OnboardingCollectionViewCell.swift */,
+				1FF897ED286B90D300FAEF77 /* OnboardingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,8 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				1FE2D0AA286A07F400AE9F89 /* DishCategory.swift */,
-				1FE2D0B0286A464D00AE9F89 /* DishBanner.swift */,
-				1FF897DC286B2CAA00FAEF77 /* DishLandscape.swift */,
+				1FE2D0B0286A464D00AE9F89 /* Dish.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,9 +228,26 @@
 		1FF897E0286B471B00FAEF77 /* Detail Module */ = {
 			isa = PBXGroup;
 			children = (
-				1FF897E1286B4B9900FAEF77 /* DishDetailViewController.swift */,
+				1FF897EC286B8D9300FAEF77 /* View */,
+				1FF897E9286B7B6200FAEF77 /* Controller */,
 			);
 			path = "Detail Module";
+			sourceTree = "<group>";
+		};
+		1FF897E9286B7B6200FAEF77 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FF897E1286B4B9900FAEF77 /* DishDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1FF897EC286B8D9300FAEF77 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FF897EA286B8D8F00FAEF77 /* DishDetailView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4F7B899A2D318FF0D2BCE3EC /* Pods */ = {
@@ -371,16 +390,17 @@
 				1FA3592928674C4800F2750D /* AppDelegate.swift in Sources */,
 				1FA3592B28674C4800F2750D /* SceneDelegate.swift in Sources */,
 				1FA35950286770BB00F2750D /* UIColor+Extension.swift in Sources */,
+				1FF897EB286B8D8F00FAEF77 /* DishDetailView.swift in Sources */,
 				1FE5EA4E28685C800018B0C2 /* UserDefaults+Extension.swift in Sources */,
 				1FF897E2286B4B9900FAEF77 /* DishDetailViewController.swift in Sources */,
 				1FD2367B28689AE50092F011 /* DishCategoryCollectionViewCell.swift in Sources */,
+				1FF897EE286B90D300FAEF77 /* OnboardingView.swift in Sources */,
 				1FA3594128676A6F00F2750D /* OnboardingViewController.swift in Sources */,
 				1FE2D0AB286A07F400AE9F89 /* DishCategory.swift in Sources */,
 				1FA3594828676C0C00F2750D /* OnboardingCollectionViewCell.swift in Sources */,
-				1FF897DD286B2CAA00FAEF77 /* DishLandscape.swift in Sources */,
 				1FE2D0AD286A0AB100AE9F89 /* String+Extension.swift in Sources */,
 				1FE2D0AF286A0F7600AE9F89 /* CardView.swift in Sources */,
-				1FE2D0B1286A464D00AE9F89 /* DishBanner.swift in Sources */,
+				1FE2D0B1286A464D00AE9F89 /* Dish.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

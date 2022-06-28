@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
         .init(id: "id9", name: "Dish9", image: "https://source.unsplash.com/random/"),
     ]
     
-    private var populars: [DishPortrait] = [
+    private var populars: [Dish] = [
         .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 111),
         .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 222),
         .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 333),
@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
         .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 999)
     ]
     
-    private var specials: [DishLandscape] = [
+    private var specials: [Dish] = [
         .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "Tkis is my favorite dish", calories: 111),
         .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 222),
         .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 333),
@@ -55,11 +55,6 @@ class MainViewController: UIViewController {
         setupBarButton()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupLayout()
-    }
-    
     // MARK: - Setups
     
     private func setAppWasLaunched() {
@@ -69,11 +64,8 @@ class MainViewController: UIViewController {
     private func setupVC() {
         view.backgroundColor = .systemBackground
         title = "Food Delivery"
-    }
-    
-    private func setupLayout() {
-        view.addSubview(mainView)
-        mainView.frame = view.bounds
+        navigationController?.navigationBar.tintColor = .label
+        navigationItem.backButtonTitle = ""
     }
     
     private func setupMainView() {
@@ -86,6 +78,7 @@ class MainViewController: UIViewController {
             )
         )
         
+        view.addSubview(mainView)
         mainView.categoryCollectionView.delegate = self
         mainView.popularCollectionView.delegate = self
         mainView.specialCollectionView.delegate = self
@@ -146,6 +139,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         default:
             return UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        if collectionView == mainView.categoryCollectionView {
+            
+        } else {
+            let dish = collectionView == mainView.popularCollectionView ? populars[indexPath.row] : specials[indexPath.row]
+            let vc = DishDetailViewController(dish: dish)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

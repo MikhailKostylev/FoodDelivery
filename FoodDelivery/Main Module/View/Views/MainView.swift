@@ -9,42 +9,42 @@ import UIKit
 
 class MainView: UIView {
     
-    let padding: CGFloat = 16
-    let sectionInset: CGFloat = 15
-    let sideInset: CGFloat = 20
-    let categoryCollectionViewHeightMultiplier: CGFloat = 0.25
-    let popularCollectionViewHeightMultiplier: CGFloat = 0.5
-    let specialCollectionViewHeightMultiplier: CGFloat = 0.2
-    let categoryCellHeightDivider: CGFloat = 3.7
-    let popularCellHeightDivider: CGFloat = 1.35
-    let specialCellHeightDivider: CGFloat = 1.7
+    private let padding: CGFloat = 16
+    private let sectionInset: CGFloat = 15
+    private let sideInset: CGFloat = 20
+    private let categoryCollectionViewHeightMultiplier: CGFloat = 0.25
+    private let popularCollectionViewHeightMultiplier: CGFloat = 0.5
+    private let specialCollectionViewHeightMultiplier: CGFloat = 0.2
+    private let categoryCellHeightDivider: CGFloat = 3.7
+    private let popularCellHeightDivider: CGFloat = 1.35
+    private let specialCellHeightDivider: CGFloat = 1.7
     
     // MARK: - UI elements
     
-    lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
-    lazy var containerView: UIView = {
+    private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         return view
     }()
     
-    lazy var topView: UIView = {
+    private lazy var topView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         return view
     }()
     
-    lazy var foodCategoryView = UIView()
-    lazy var popularDishesView = UIView()
-    lazy var chefsSpecialsView = UIView()
+    private lazy var foodCategoryView = UIView()
+    private lazy var popularDishesView = UIView()
+    private lazy var chefsSpecialsView = UIView()
     
-    lazy var foodCategoryLabel: UILabel = {
+    private lazy var foodCategoryLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Food Category"
@@ -54,7 +54,7 @@ class MainView: UIView {
         return label
     }()
     
-    lazy var popularDishesLabel: UILabel = {
+    private lazy var popularDishesLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Popular Dishes"
@@ -64,7 +64,7 @@ class MainView: UIView {
         return label
     }()
     
-    lazy var chefsSpecialsLabel: UILabel = {
+    private lazy var chefsSpecialsLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Chef's Specials"

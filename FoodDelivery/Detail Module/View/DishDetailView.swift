@@ -1,5 +1,5 @@
 //
-//  DishDetailViewController.swift
+//  DishDetailView.swift
 //  FoodDelivery
 //
 //  Created by Mikhail Kostylev on 28.06.2022.
@@ -7,16 +7,14 @@
 
 import UIKit
 
-class DishDetailViewController: UIViewController {
+class DishDetailView: UIView {
     
     private let padding: CGFloat = 16
     private let caloriesLabelWidth: CGFloat = 100
     private let nameTextFieldHeight: CGFloat = 50
     private let placeOrderButtonHeight: CGFloat = 50
     
-    // MARK: - UI elements
-    
-    private let imageView: UIImageView = {
+    let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
@@ -42,7 +40,7 @@ class DishDetailViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .label
@@ -51,7 +49,7 @@ class DishDetailViewController: UIViewController {
         return label
     }()
     
-    private lazy var caloriesLabel: UILabel = {
+    lazy var caloriesLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
         label.textColor = .appRed
@@ -62,7 +60,7 @@ class DishDetailViewController: UIViewController {
         return label
     }()
     
-    private lazy var descriptionLabel: UILabel = {
+    lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .label
@@ -99,26 +97,20 @@ class DishDetailViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
-    // MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupVC()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         ssetupLayout()
     }
     
-    // MARK: - Setups
-    
-    private func setupVC() {
-        view.backgroundColor = .systemBackground
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        ssetupLayout()
     }
     
-    // MARK: - Layout
-    
     private func ssetupLayout() {
-        view.addSubview(imageView)
-        view.addSubview(vStackView)
+        addSubview(imageView)
+        addSubview(vStackView)
         vStackView.addArrangedSubview(hStackView)
         hStackView.addArrangedSubview(titleLabel)
         hStackView.addArrangedSubview(caloriesLabel)
@@ -136,14 +128,14 @@ class DishDetailViewController: UIViewController {
         placeOrderButton.prepareForAutoLayout()
         
         let constraints = [
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            imageView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            imageView.topAnchor.constraint(equalTo: self.topAnchor),
             
-            vStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            vStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            vStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            vStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             vStackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: padding),
-            vStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
+            vStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
                         
             caloriesLabel.widthAnchor.constraint(equalToConstant: caloriesLabelWidth),
             

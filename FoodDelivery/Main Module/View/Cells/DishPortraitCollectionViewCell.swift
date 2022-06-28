@@ -79,7 +79,7 @@ class DishPortraitCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
-    func configure(model: DishPortrait) {
+    func configure(model: Dish) {
         titleLabel.text = model.name
         imageView.kf.setImage(with: model.image?.asUrl)
         caloriesLabel.text = model.formattedCalories
