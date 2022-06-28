@@ -16,7 +16,6 @@
 		1FA3594328676BA600F2750D /* OnboardingSlideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3594228676BA600F2750D /* OnboardingSlideModel.swift */; };
 		1FA3594828676C0C00F2750D /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3594728676C0C00F2750D /* OnboardingCollectionViewCell.swift */; };
 		1FA3594B28676D2B00F2750D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3594A28676D2B00F2750D /* UIView+Extension.swift */; };
-		1FA3594E28676D5C00F2750D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3594D28676D5C00F2750D /* Constants.swift */; };
 		1FA35950286770BB00F2750D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3594F286770BB00F2750D /* UIColor+Extension.swift */; };
 		1FD2367B28689AE50092F011 /* DishCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD2367A28689AE50092F011 /* DishCategoryCollectionViewCell.swift */; };
 		1FD2367D2868A2010092F011 /* DishPortraitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD2367C2868A2010092F011 /* DishPortraitCollectionViewCell.swift */; };
@@ -27,6 +26,8 @@
 		1FE2D0B1286A464D00AE9F89 /* DishBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2D0B0286A464D00AE9F89 /* DishBanner.swift */; };
 		1FE5EA4E28685C800018B0C2 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5EA4D28685C800018B0C2 /* UserDefaults+Extension.swift */; };
 		1FF897DD286B2CAA00FAEF77 /* DishLandscape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF897DC286B2CAA00FAEF77 /* DishLandscape.swift */; };
+		1FF897E2286B4B9900FAEF77 /* DishDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF897E1286B4B9900FAEF77 /* DishDetailViewController.swift */; };
+		1FF897E8286B6ADC00FAEF77 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF897E7286B6ADC00FAEF77 /* MainView.swift */; };
 		FAE954B300CB4254904D451A /* Pods_FoodDelivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184FDED38100F749E97FB8E4 /* Pods_FoodDelivery.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +45,6 @@
 		1FA3594228676BA600F2750D /* OnboardingSlideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlideModel.swift; sourceTree = "<group>"; };
 		1FA3594728676C0C00F2750D /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FA3594A28676D2B00F2750D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		1FA3594D28676D5C00F2750D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1FA3594F286770BB00F2750D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		1FD2367A28689AE50092F011 /* DishCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FD2367C2868A2010092F011 /* DishPortraitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishPortraitCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -55,6 +55,8 @@
 		1FE2D0B0286A464D00AE9F89 /* DishBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishBanner.swift; sourceTree = "<group>"; };
 		1FE5EA4D28685C800018B0C2 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		1FF897DC286B2CAA00FAEF77 /* DishLandscape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishLandscape.swift; sourceTree = "<group>"; };
+		1FF897E1286B4B9900FAEF77 /* DishDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailViewController.swift; sourceTree = "<group>"; };
+		1FF897E7286B6ADC00FAEF77 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		6978C9485C60C36483FD4320 /* Pods-FoodDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDelivery.release.xcconfig"; path = "Target Support Files/Pods-FoodDelivery/Pods-FoodDelivery.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,9 +97,9 @@
 				1FA3593D28674C7100F2750D /* App */,
 				1FA3593F28676A2100F2750D /* Welcome Module */,
 				1FA3593E28674CD500F2750D /* Main Module */,
+				1FF897E0286B471B00FAEF77 /* Detail Module */,
 				1FA3593C28674C6500F2750D /* Resources */,
 				1FA3594928676D0F00F2750D /* Extensions */,
-				1FA3594C28676D4300F2750D /* Constants */,
 			);
 			path = FoodDelivery;
 			sourceTree = "<group>";
@@ -175,14 +177,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		1FA3594C28676D4300F2750D /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				1FA3594D28676D5C00F2750D /* Constants.swift */,
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
 		1FE5EA4A286857B60018B0C2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,10 +188,8 @@
 		1FE5EA4B28685A1E0018B0C2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1FD2367A28689AE50092F011 /* DishCategoryCollectionViewCell.swift */,
-				1FD2367C2868A2010092F011 /* DishPortraitCollectionViewCell.swift */,
-				1FD2367E2868A2650092F011 /* DishLandscapeCollectionViewCell.swift */,
-				1FE2D0AE286A0F7600AE9F89 /* CardView.swift */,
+				1FF897DE286B46DD00FAEF77 /* Cells */,
+				1FF897DF286B46E700FAEF77 /* Views */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -210,6 +202,33 @@
 				1FF897DC286B2CAA00FAEF77 /* DishLandscape.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1FF897DE286B46DD00FAEF77 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1FD2367A28689AE50092F011 /* DishCategoryCollectionViewCell.swift */,
+				1FD2367C2868A2010092F011 /* DishPortraitCollectionViewCell.swift */,
+				1FD2367E2868A2650092F011 /* DishLandscapeCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1FF897DF286B46E700FAEF77 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1FF897E7286B6ADC00FAEF77 /* MainView.swift */,
+				1FE2D0AE286A0F7600AE9F89 /* CardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1FF897E0286B471B00FAEF77 /* Detail Module */ = {
+			isa = PBXGroup;
+			children = (
+				1FF897E1286B4B9900FAEF77 /* DishDetailViewController.swift */,
+			);
+			path = "Detail Module";
 			sourceTree = "<group>";
 		};
 		4F7B899A2D318FF0D2BCE3EC /* Pods */ = {
@@ -348,10 +367,12 @@
 				1FD2367D2868A2010092F011 /* DishPortraitCollectionViewCell.swift in Sources */,
 				1FA3594328676BA600F2750D /* OnboardingSlideModel.swift in Sources */,
 				1FD2367F2868A2650092F011 /* DishLandscapeCollectionViewCell.swift in Sources */,
+				1FF897E8286B6ADC00FAEF77 /* MainView.swift in Sources */,
 				1FA3592928674C4800F2750D /* AppDelegate.swift in Sources */,
 				1FA3592B28674C4800F2750D /* SceneDelegate.swift in Sources */,
 				1FA35950286770BB00F2750D /* UIColor+Extension.swift in Sources */,
 				1FE5EA4E28685C800018B0C2 /* UserDefaults+Extension.swift in Sources */,
+				1FF897E2286B4B9900FAEF77 /* DishDetailViewController.swift in Sources */,
 				1FD2367B28689AE50092F011 /* DishCategoryCollectionViewCell.swift in Sources */,
 				1FA3594128676A6F00F2750D /* OnboardingViewController.swift in Sources */,
 				1FE2D0AB286A07F400AE9F89 /* DishCategory.swift in Sources */,
@@ -359,7 +380,6 @@
 				1FF897DD286B2CAA00FAEF77 /* DishLandscape.swift in Sources */,
 				1FE2D0AD286A0AB100AE9F89 /* String+Extension.swift in Sources */,
 				1FE2D0AF286A0F7600AE9F89 /* CardView.swift in Sources */,
-				1FA3594E28676D5C00F2750D /* Constants.swift in Sources */,
 				1FE2D0B1286A464D00AE9F89 /* DishBanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

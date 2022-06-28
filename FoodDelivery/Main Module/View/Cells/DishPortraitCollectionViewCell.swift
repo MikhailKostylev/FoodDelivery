@@ -111,10 +111,10 @@ class DishPortraitCollectionViewCell: UICollectionViewCell {
             view.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             view.heightAnchor.constraint(equalTo: contentView.heightAnchor),
             
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -padding*2),
-            stackView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -padding*2)
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding)
         ]
         NSLayoutConstraint.activate(constraints)
     }
