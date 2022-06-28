@@ -1,5 +1,5 @@
 //
-//  DishBannerCollectionViewCell.swift
+//  DishPortraitCollectionViewCell.swift
 //  FoodDelivery
 //
 //  Created by Mikhail Kostylev on 26.06.2022.
@@ -8,9 +8,9 @@
 import UIKit
 import Kingfisher
 
-class DishBannerCollectionViewCell: UICollectionViewCell {
+class DishPortraitCollectionViewCell: UICollectionViewCell {
     
-    static let id = String(describing: DishBannerCollectionViewCell.self)
+    static let id = String(describing: DishPortraitCollectionViewCell.self)
     
     private let padding: CGFloat = 8
     private let imageSide: CGFloat = 40
@@ -20,7 +20,7 @@ class DishBannerCollectionViewCell: UICollectionViewCell {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = padding
         return stackView
     }()
     
@@ -79,11 +79,11 @@ class DishBannerCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
-    func configure(dish: Dish) {
-        titleLabel.text = dish.name
-        imageView.kf.setImage(with: dish.image?.asUrl)
-        caloriesLabel.text = dish.formattedCalories
-        descriptionLabel.text = dish.description
+    func configure(model: DishPortrait) {
+        titleLabel.text = model.name
+        imageView.kf.setImage(with: model.image?.asUrl)
+        caloriesLabel.text = model.formattedCalories
+        descriptionLabel.text = model.description
     }
     
     private func setupCell() {

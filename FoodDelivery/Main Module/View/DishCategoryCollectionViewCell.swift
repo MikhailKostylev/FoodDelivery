@@ -1,5 +1,5 @@
 //
-//  CategoryCollectionViewCell.swift
+//  DishCategoryCollectionViewCell.swift
 //  FoodDelivery
 //
 //  Created by Mikhail Kostylev on 26.06.2022.
@@ -8,9 +8,9 @@
 import UIKit
 import Kingfisher
 
-class CategoryCollectionViewCell: UICollectionViewCell {
+class DishCategoryCollectionViewCell: UICollectionViewCell {
     
-    static let id = String(describing: CategoryCollectionViewCell.self)
+    static let id = String(describing: DishCategoryCollectionViewCell.self)
     
     private let padding: CGFloat = 8
     private let imageSide: CGFloat = 40
@@ -53,9 +53,9 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
-    func configure(category: DishCategory) {
-        titleLabel.text = category.name
-        imageView.kf.setImage(with: category.image?.asUrl)
+    func configure(model: DishCategory) {
+        titleLabel.text = model.name
+        imageView.kf.setImage(with: model.image?.asUrl)
     }
     
     private func setupCell() {
