@@ -97,7 +97,7 @@ class MainView: UIView {
     lazy var popularCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: (width/2)-sideInset, height:  (height*popularCollectionViewHeightMultiplier)/popularCellHeightDivider)
+        layout.itemSize = CGSize(width: (width/2)-sectionInset, height:  (height*popularCollectionViewHeightMultiplier)/popularCellHeightDivider)
         layout.sectionInset = UIEdgeInsets(top: sectionInset/3, left: sideInset, bottom: 0, right: sideInset)
         layout.minimumLineSpacing = sectionInset
         layout.minimumInteritemSpacing = sectionInset/3
@@ -168,7 +168,7 @@ class MainView: UIView {
         categoryCollectionView.prepareForAutoLayout()
         popularCollectionView.prepareForAutoLayout()
         specialCollectionView.prepareForAutoLayout()
-        
+                
         let constraints = [
             topView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             topView.widthAnchor.constraint(equalTo: self.widthAnchor),

@@ -13,7 +13,7 @@ class DishDetailViewController: UIViewController {
     var dish: Dish?
     var dishDetailView: DishDetailView!
     
-    private let interlineSpacing: CGFloat = 10
+    private let interlineSpacing: CGFloat = 5
 
     init(dish: Dish) {
         self.dish = dish

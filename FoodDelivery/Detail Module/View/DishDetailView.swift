@@ -77,7 +77,6 @@ class DishDetailView: UIView {
         label.textColor = .label.withAlphaComponent(0.7)
         label.textAlignment = .natural
         label.font = .systemFont(ofSize: 15, weight: .regular)
-        label.addInterlineSpacing(spacing: 10)
         return label
     }()
     
@@ -142,7 +141,7 @@ class DishDetailView: UIView {
         vStackView.addArrangedSubview(descriptionLabel)
         vStackView.addArrangedSubview(nameTextField)
         vStackView.addArrangedSubview(placeOrderButton)
-        
+
         imageView.prepareForAutoLayout()
         backView.prepareForAutoLayout()
         vStackView.prepareForAutoLayout()

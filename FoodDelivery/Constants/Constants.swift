@@ -8,7 +8,6 @@
 import UIKit
 
 public enum Constants {
-    /// Main Module
     static let backgroundColor = UIColor.secondarySystemBackground
     static let foregroundColor = UIColor.systemBackground
 }

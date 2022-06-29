@@ -1,5 +1,5 @@
 //
-//  DishListTableViewCell.swift
+//  OrderListTableViewCell.swift
 //  FoodDelivery
 //
 //  Created by Mikhail Kostylev on 29.06.2022.
@@ -8,13 +8,13 @@
 import UIKit
 import Kingfisher
 
-class DishListTableViewCell: UITableViewCell {
+class OrderListTableViewCell: UITableViewCell {
 
-    static let id = String(describing: DishListTableViewCell.self)
+    static let id = String(describing: OrderListTableViewCell.self)
     
     private let cornerRadius: CGFloat = 10
     private let padding: CGFloat = 16
-    private let imageSide: CGFloat = 50
+    private let imageSide: CGFloat = 64
     
     private lazy var view = CardView()
     
@@ -78,10 +78,10 @@ class DishListTableViewCell: UITableViewCell {
         contentView.backgroundColor = Constants.backgroundColor
     }
     
-    func configure(model: Dish) {
-        dishImageView.kf.setImage(with: model.image?.asUrl)
-        titleLabel.text = model.name
-        descriptionLabel.text = model.description
+    func configure(model: Order) {
+        dishImageView.kf.setImage(with: model.dish?.image?.asUrl)
+        titleLabel.text = model.dish?.name
+        descriptionLabel.text = model.name
     }
         
     private func setupLayout() {

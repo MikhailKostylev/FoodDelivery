@@ -22,6 +22,10 @@
 		1FA3594828676C0C00F2750D /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3594728676C0C00F2750D /* OnboardingCollectionViewCell.swift */; };
 		1FA3594B28676D2B00F2750D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3594A28676D2B00F2750D /* UIView+Extension.swift */; };
 		1FA35950286770BB00F2750D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3594F286770BB00F2750D /* UIColor+Extension.swift */; };
+		1FAAC412286CDE5D001CA495 /* OrderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAAC411286CDE5D001CA495 /* OrderListViewController.swift */; };
+		1FAAC416286CDF68001CA495 /* OrderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAAC415286CDF68001CA495 /* OrderListTableViewCell.swift */; };
+		1FAAC418286CDF8E001CA495 /* OrderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAAC417286CDF8E001CA495 /* OrderList.swift */; };
+		1FAAC41A286CE135001CA495 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAAC419286CE135001CA495 /* Order.swift */; };
 		1FD2367B28689AE50092F011 /* DishCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD2367A28689AE50092F011 /* DishCategoryCollectionViewCell.swift */; };
 		1FD2367D2868A2010092F011 /* DishPortraitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD2367C2868A2010092F011 /* DishPortraitCollectionViewCell.swift */; };
 		1FD2367F2868A2650092F011 /* DishLandscapeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD2367E2868A2650092F011 /* DishLandscapeCollectionViewCell.swift */; };
@@ -57,6 +61,10 @@
 		1FA3594728676C0C00F2750D /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FA3594A28676D2B00F2750D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		1FA3594F286770BB00F2750D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		1FAAC411286CDE5D001CA495 /* OrderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewController.swift; sourceTree = "<group>"; };
+		1FAAC415286CDF68001CA495 /* OrderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListTableViewCell.swift; sourceTree = "<group>"; };
+		1FAAC417286CDF8E001CA495 /* OrderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderList.swift; sourceTree = "<group>"; };
+		1FAAC419286CE135001CA495 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		1FD2367A28689AE50092F011 /* DishCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FD2367C2868A2010092F011 /* DishPortraitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishPortraitCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FD2367E2868A2650092F011 /* DishLandscapeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishLandscapeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -159,8 +167,9 @@
 				1FA3593D28674C7100F2750D /* App */,
 				1FA3593F28676A2100F2750D /* Welcome Module */,
 				1FA3593E28674CD500F2750D /* Main Module */,
-				1FF897E0286B471B00FAEF77 /* Detail Module */,
+				1FAAC40D286CDDC2001CA495 /* Order List Module */,
 				1F1B3C05286C9CA400D824E3 /* Dish List Module */,
+				1FF897E0286B471B00FAEF77 /* Detail Module */,
 				1FA3593C28674C6500F2750D /* Resources */,
 				1FA3594928676D0F00F2750D /* Extensions */,
 				1F1B3C08286C9DEA00D824E3 /* Constants */,
@@ -241,6 +250,57 @@
 				1FE2D0AC286A0AB100AE9F89 /* String+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1FAAC40D286CDDC2001CA495 /* Order List Module */ = {
+			isa = PBXGroup;
+			children = (
+				1FAAC410286CDE15001CA495 /* Model */,
+				1FAAC40F286CDE0E001CA495 /* View */,
+				1FAAC40E286CDE05001CA495 /* Controller */,
+			);
+			path = "Order List Module";
+			sourceTree = "<group>";
+		};
+		1FAAC40E286CDE05001CA495 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FAAC411286CDE5D001CA495 /* OrderListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1FAAC40F286CDE0E001CA495 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FAAC413286CDF38001CA495 /* Cells */,
+				1FAAC414286CDF3E001CA495 /* Views */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1FAAC410286CDE15001CA495 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1FAAC419286CE135001CA495 /* Order.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1FAAC413286CDF38001CA495 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1FAAC415286CDF68001CA495 /* OrderListTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1FAAC414286CDF3E001CA495 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1FAAC417286CDF8E001CA495 /* OrderList.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		1FE5EA4A286857B60018B0C2 /* Controller */ = {
@@ -447,6 +507,7 @@
 				1FA3594B28676D2B00F2750D /* UIView+Extension.swift in Sources */,
 				1FA3592D28674C4800F2750D /* MainViewController.swift in Sources */,
 				1FD2367D2868A2010092F011 /* DishPortraitCollectionViewCell.swift in Sources */,
+				1FAAC416286CDF68001CA495 /* OrderListTableViewCell.swift in Sources */,
 				1FA3594328676BA600F2750D /* OnboardingSlideModel.swift in Sources */,
 				1FD2367F2868A2650092F011 /* DishLandscapeCollectionViewCell.swift in Sources */,
 				1F1B3C0E286CAC4800D824E3 /* DishListTableViewCell.swift in Sources */,
@@ -459,16 +520,19 @@
 				1FF897EB286B8D8F00FAEF77 /* DishDetailView.swift in Sources */,
 				1FE5EA4E28685C800018B0C2 /* UserDefaults+Extension.swift in Sources */,
 				1FF897E2286B4B9900FAEF77 /* DishDetailViewController.swift in Sources */,
+				1FAAC412286CDE5D001CA495 /* OrderListViewController.swift in Sources */,
 				1FD2367B28689AE50092F011 /* DishCategoryCollectionViewCell.swift in Sources */,
 				1FF897EE286B90D300FAEF77 /* OnboardingView.swift in Sources */,
 				1FA3594128676A6F00F2750D /* OnboardingViewController.swift in Sources */,
 				1F1B3C12286CC48C00D824E3 /* DishListView.swift in Sources */,
 				1FE2D0AB286A07F400AE9F89 /* DishCategory.swift in Sources */,
+				1FAAC418286CDF8E001CA495 /* OrderList.swift in Sources */,
 				1FA3594828676C0C00F2750D /* OnboardingCollectionViewCell.swift in Sources */,
 				1F1B3C07286C9CEB00D824E3 /* DishListViewController.swift in Sources */,
 				1FE2D0AD286A0AB100AE9F89 /* String+Extension.swift in Sources */,
 				1FE2D0AF286A0F7600AE9F89 /* CardView.swift in Sources */,
 				1FE2D0B1286A464D00AE9F89 /* Dish.swift in Sources */,
+				1FAAC41A286CE135001CA495 /* Order.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

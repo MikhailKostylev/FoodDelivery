@@ -104,7 +104,8 @@ class MainViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func didTapCartButton() {
-        
+        let vc = OrderListViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
