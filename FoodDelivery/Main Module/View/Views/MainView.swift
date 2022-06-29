@@ -12,6 +12,7 @@ class MainView: UIView {
     private let padding: CGFloat = 16
     private let sectionInset: CGFloat = 15
     private let sideInset: CGFloat = 20
+    private let infoGradientViewHeight: CGFloat = 44
     private let categoryCollectionViewHeightMultiplier: CGFloat = 0.25
     private let popularCollectionViewHeightMultiplier: CGFloat = 0.5
     private let specialCollectionViewHeightMultiplier: CGFloat = 0.2
@@ -30,7 +31,7 @@ class MainView: UIView {
     
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = Constants.backgroundColor
         return view
     }()
     
@@ -83,6 +84,7 @@ class MainView: UIView {
         layout.minimumInteritemSpacing = sectionInset/3
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = Constants.backgroundColor
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = false
         collectionView.register(
@@ -101,6 +103,7 @@ class MainView: UIView {
         layout.minimumInteritemSpacing = sectionInset/3
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = Constants.backgroundColor
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = false
         collectionView.register(
@@ -119,6 +122,7 @@ class MainView: UIView {
         layout.minimumInteritemSpacing = sectionInset/3
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = Constants.backgroundColor
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = false
         collectionView.register(

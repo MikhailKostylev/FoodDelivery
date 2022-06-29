@@ -67,8 +67,7 @@ class MainViewController: UIViewController {
     }
     
     private func setupVC() {
-        view.backgroundColor = .systemBackground
-        title = " Food Delivery "
+        title = "Food Delivery"
         navigationController?.navigationBar.tintColor = .appRed
         navigationItem.backButtonTitle = "Back"
     }
@@ -151,7 +150,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         collectionView.deselectItem(at: indexPath, animated: true)
         
         if collectionView == mainView.categoryCollectionView {
-            
+            let category = categories[indexPath.row]
+            let vc = DishListViewController(category: category)
+            navigationController?.pushViewController(vc, animated: true)
         } else {
             let dish = collectionView == mainView.popularCollectionView ? populars[indexPath.row] : specials[indexPath.row]
             let vc = DishDetailViewController(dish: dish)

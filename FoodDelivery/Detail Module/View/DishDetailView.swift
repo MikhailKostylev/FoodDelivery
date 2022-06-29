@@ -74,7 +74,7 @@ class DishDetailView: UIView {
         let label = UILabel()
         label.text = ""
         label.numberOfLines = 10
-        label.textColor = .secondaryLabel
+        label.textColor = .label.withAlphaComponent(0.7)
         label.textAlignment = .natural
         label.font = .systemFont(ofSize: 15, weight: .regular)
         label.addInterlineSpacing(spacing: 10)
@@ -132,6 +132,7 @@ class DishDetailView: UIView {
     }
     
     private func setupLayout() {
+        self.backgroundColor = Constants.backgroundColor
         addSubview(imageView)
         addSubview(backView)
         addSubview(vStackView)

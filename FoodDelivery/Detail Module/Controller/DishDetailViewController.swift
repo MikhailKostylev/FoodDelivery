@@ -47,6 +47,7 @@ class DishDetailViewController: UIViewController {
     
     private func setupVC() {
         view.backgroundColor = .systemBackground
+        navigationItem.backButtonTitle = "Back"
     }
     
     private func setupDishDetailView() {
