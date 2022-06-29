@@ -54,7 +54,7 @@ class DishPortraitCollectionViewCell: UICollectionViewCell {
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.textColor = .systemGray
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 14, weight: .regular)

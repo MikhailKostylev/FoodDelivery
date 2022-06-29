@@ -36,6 +36,11 @@ class OnboardingViewController: UIViewController {
         addActions()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        onboardingView.frame = view.bounds
+    }
+    
     // MARK: - Setups
     
     private func setupVC() {

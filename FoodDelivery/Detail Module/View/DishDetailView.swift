@@ -8,13 +8,23 @@
 import UIKit
 
 class DishDetailView: UIView {
-    
+            
     private let padding: CGFloat = 16
+    private let backViewHeight: CGFloat = 44
+    private let backViewWidth: CGFloat = 75
     private let caloriesLabelWidth: CGFloat = 100
     private let nameTextFieldHeight: CGFloat = 50
     private let placeOrderButtonHeight: CGFloat = 50
+    private let descriptionLabelHeight: CGFloat = 50
     
-    let imageView: UIImageView = {
+    lazy var backView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .appYellow.withAlphaComponent(0)
+        view.layer.cornerRadius = backViewHeight/2
+        return view
+    }()
+    
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
@@ -26,7 +36,7 @@ class DishDetailView: UIView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.distribution = .fill
+        stackView.distribution = .fillProportionally
         stackView.spacing = padding
         return stackView
     }()
@@ -56,16 +66,18 @@ class DishDetailView: UIView {
         label.textAlignment = .right
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
-        label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.font = .systemFont(ofSize: 18, weight: .medium)
         return label
     }()
     
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
-        label.textColor = .label
+        label.text = ""
+        label.numberOfLines = 10
+        label.textColor = .secondaryLabel
         label.textAlignment = .natural
         label.font = .systemFont(ofSize: 15, weight: .regular)
+        label.addInterlineSpacing(spacing: 10)
         return label
     }()
     
@@ -94,22 +106,34 @@ class DishDetailView: UIView {
         button.backgroundColor = .appRed
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        ssetupLayout()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        ssetupLayout()
+        setupLayout()
     }
     
-    private func ssetupLayout() {
+    func showBackView() {
+        UIView.animate(withDuration: 0.5) {
+            self.backView.backgroundColor = .appYellow.withAlphaComponent(1)
+        }
+    }
+    
+    func hideBackView() {
+        UIView.animate(withDuration: 0.3) {
+            self.backView.backgroundColor = .appYellow.withAlphaComponent(0)
+        }
+    }
+    
+    private func setupLayout() {
         addSubview(imageView)
+        addSubview(backView)
         addSubview(vStackView)
         vStackView.addArrangedSubview(hStackView)
         hStackView.addArrangedSubview(titleLabel)
@@ -119,6 +143,7 @@ class DishDetailView: UIView {
         vStackView.addArrangedSubview(placeOrderButton)
         
         imageView.prepareForAutoLayout()
+        backView.prepareForAutoLayout()
         vStackView.prepareForAutoLayout()
         hStackView.prepareForAutoLayout()
         titleLabel.prepareForAutoLayout()
@@ -132,11 +157,16 @@ class DishDetailView: UIView {
             imageView.widthAnchor.constraint(equalTo: self.widthAnchor),
             imageView.topAnchor.constraint(equalTo: self.topAnchor),
             
-            vStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            vStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            backView.widthAnchor.constraint(equalToConstant: backViewWidth),
+            backView.heightAnchor.constraint(equalToConstant: backViewHeight),
+            backView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            backView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 5),
+            
+            vStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: padding),
+            vStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
             vStackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: padding),
             vStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
-                        
+                                    
             caloriesLabel.widthAnchor.constraint(equalToConstant: caloriesLabelWidth),
             
             nameTextField.heightAnchor.constraint(equalToConstant: nameTextFieldHeight),

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F1B3C04286C8D4F00D824E3 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B3C03286C8D4F00D824E3 /* UILabel+Extensions.swift */; };
 		1FA3592928674C4800F2750D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3592828674C4800F2750D /* AppDelegate.swift */; };
 		1FA3592B28674C4800F2750D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3592A28674C4800F2750D /* SceneDelegate.swift */; };
 		1FA3592D28674C4800F2750D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3592C28674C4800F2750D /* MainViewController.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		184FDED38100F749E97FB8E4 /* Pods_FoodDelivery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodDelivery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18697C61AFA0C933FB610F87 /* Pods-FoodDelivery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDelivery.debug.xcconfig"; path = "Target Support Files/Pods-FoodDelivery/Pods-FoodDelivery.debug.xcconfig"; sourceTree = "<group>"; };
+		1F1B3C03286C8D4F00D824E3 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		1FA3592528674C4800F2750D /* FoodDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA3592828674C4800F2750D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FA3592A28674C4800F2750D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			children = (
 				1FA3594A28676D2B00F2750D /* UIView+Extension.swift */,
 				1FA3594F286770BB00F2750D /* UIColor+Extension.swift */,
+				1F1B3C03286C8D4F00D824E3 /* UILabel+Extensions.swift */,
 				1FE5EA4D28685C800018B0C2 /* UserDefaults+Extension.swift */,
 				1FE2D0AC286A0AB100AE9F89 /* String+Extension.swift */,
 			);
@@ -387,6 +390,7 @@
 				1FA3594328676BA600F2750D /* OnboardingSlideModel.swift in Sources */,
 				1FD2367F2868A2650092F011 /* DishLandscapeCollectionViewCell.swift in Sources */,
 				1FF897E8286B6ADC00FAEF77 /* MainView.swift in Sources */,
+				1F1B3C04286C8D4F00D824E3 /* UILabel+Extensions.swift in Sources */,
 				1FA3592928674C4800F2750D /* AppDelegate.swift in Sources */,
 				1FA3592B28674C4800F2750D /* SceneDelegate.swift in Sources */,
 				1FA35950286770BB00F2750D /* UIColor+Extension.swift in Sources */,

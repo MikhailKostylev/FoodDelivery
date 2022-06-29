@@ -12,6 +12,8 @@ class DishDetailViewController: UIViewController {
     
     var dish: Dish?
     var dishDetailView: DishDetailView!
+    
+    private let interlineSpacing: CGFloat = 10
 
     init(dish: Dish) {
         self.dish = dish
@@ -28,6 +30,17 @@ class DishDetailViewController: UIViewController {
         super.viewDidLoad()
         setupVC()
         setupDishDetailView()
+        addEdgeGestureRecognizer()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dishDetailView.showBackView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        dishDetailView.frame = view.bounds
     }
     
     // MARK: - Setups
@@ -45,11 +58,29 @@ class DishDetailViewController: UIViewController {
                 height: view.height
             )
         )
-        
+                
         view.addSubview(dishDetailView)
         dishDetailView.imageView.kf.setImage(with: dish?.image?.asUrl)
         dishDetailView.titleLabel.text = dish?.name
         dishDetailView.descriptionLabel.text = dish?.description
+        dishDetailView.descriptionLabel.addInterlineSpacing(spacing: interlineSpacing)
         dishDetailView.caloriesLabel.text = dish?.formattedCalories
     }
+    
+    private func addEdgeGestureRecognizer() {
+        navigationController?.interactivePopGestureRecognizer?.addTarget(
+            self,
+            action: #selector(handlePopGesture(gesture:))
+        )
+    }
+    
+    @objc private func handlePopGesture(gesture: UIGestureRecognizer){
+        if gesture.state == .changed {
+            dishDetailView.hideBackView()
+        } else {
+            dishDetailView.showBackView()
+        }
+    }
+    
+    
 }

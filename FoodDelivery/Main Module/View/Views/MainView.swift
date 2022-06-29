@@ -36,7 +36,7 @@ class MainView: UIView {
     
     private lazy var topView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .appYellow
         return view
     }()
     

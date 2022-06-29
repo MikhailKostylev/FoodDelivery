@@ -24,25 +24,25 @@ class MainViewController: UIViewController {
     ]
     
     private var populars: [Dish] = [
-        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 111),
-        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 222),
-        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 333),
-        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 444),
-        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 555),
-        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 777),
-        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 888),
-        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 999)
+        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorit", calories: 111),
+        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "22Some text about current dish", calories: 222),
+        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "33Some text about current dish", calories: 333),
+        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "44Some text about current dish", calories: 444),
+        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "55Some text about current dish", calories: 555),
+        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "66Some text about current dish", calories: 777),
+        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "77Some text about current dish", calories: 888),
+        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "88Some text about current dish", calories: 999)
     ]
     
     private var specials: [Dish] = [
-        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "Tkis is my favorite dish", calories: 111),
-        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 222),
-        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 333),
-        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 444),
-        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 555),
-        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 777),
-        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 888),
-        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "Some text about current dish", calories: 999)
+        .init(id: "id1", name: "Dish11", image: "https://source.unsplash.com/random/", description: "1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish", calories: 111),
+        .init(id: "id2", name: "Dish22", image: "https://source.unsplash.com/random/", description: "2Some text about current dish", calories: 222),
+        .init(id: "id3", name: "Dish33", image: "https://source.unsplash.com/random/", description: "3Some text about current dish", calories: 333),
+        .init(id: "id4", name: "Dish44", image: "https://source.unsplash.com/random/", description: "4Some text about current dish", calories: 444),
+        .init(id: "id1", name: "Dish55", image: "https://source.unsplash.com/random/", description: "5Some text about current dish", calories: 555),
+        .init(id: "id2", name: "Dish66", image: "https://source.unsplash.com/random/", description: "6Some text about current dish", calories: 777),
+        .init(id: "id3", name: "Dish77", image: "https://source.unsplash.com/random/", description: "7Some text about current dish", calories: 888),
+        .init(id: "id4", name: "Dish88", image: "https://source.unsplash.com/random/", description: "8Some text about current dish", calories: 999)
     ]
     
     // MARK: - Lifecycle
@@ -55,6 +55,11 @@ class MainViewController: UIViewController {
         setupBarButton()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        mainView.frame = view.bounds
+    }
+    
     // MARK: - Setups
     
     private func setAppWasLaunched() {
@@ -63,9 +68,9 @@ class MainViewController: UIViewController {
     
     private func setupVC() {
         view.backgroundColor = .systemBackground
-        title = "Food Delivery"
-        navigationController?.navigationBar.tintColor = .label
-        navigationItem.backButtonTitle = ""
+        title = " Food Delivery "
+        navigationController?.navigationBar.tintColor = .appRed
+        navigationItem.backButtonTitle = "Back"
     }
     
     private func setupMainView() {
@@ -94,7 +99,7 @@ class MainViewController: UIViewController {
             target: self,
             action: #selector(didTapCartButton)
         )
-        navigationItem.rightBarButtonItem?.tintColor = .label
+        navigationItem.rightBarButtonItem?.tintColor = .appRed
     }
     
     // MARK: - Actions
