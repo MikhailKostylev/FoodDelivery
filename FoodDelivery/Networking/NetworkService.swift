@@ -9,13 +9,85 @@ import Foundation
 
 struct NetworkService {
     
-    /// Create a URLRequest
+    /// Make a network request.
+    /// - Parameters:
+    ///   - route: The path to the resource in the backend.
+    ///   - method: Type of request to be made.
+    ///   - parameters: Additional information that can be passed to the backend.
+    ///   - completion: Causes feedback depending on the result.
+    private func request<T: Codable>(
+        route: Route,
+        method: Method,
+        parameters: [String: Any]? = nil,
+        completion: @escaping (Result<T, Error>) -> Void
+    ) {
+        guard let request = createRequest(route: route, method: method, parameters: parameters) else {
+            completion(.failure(NetworkError.unknownError))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            var result: Result<Data, Error>?
+            
+            if let data = data {
+                result = .success(data)
+            } else if let error = error {
+                result = .failure(error)
+            }
+            
+            DispatchQueue.main.async {
+                self.handleResponse(result: result, completion: completion)
+            }
+        }.resume()
+    }
+    
+    /// Handle network response.
+    /// - Parameters:
+    ///   - result: Result of network request.
+    ///   - completion: Causes feedback depending on the result.
+    private func handleResponse<T: Codable>(
+        result: Result<Data, Error>?,
+        completion: (Result<T, Error>) -> Void) {
+        
+        guard let result = result else {
+            completion(.failure(NetworkError.unknownError))
+            return
+        }
+        
+        switch result {
+        case .success(let data):
+            let decoder = JSONDecoder()
+            guard let response = try? decoder.decode(APIResponse<T>.self, from: data) else {
+                completion(.failure(NetworkError.decodingError))
+                return
+            }
+            
+            if let error = response.error {
+                completion(.failure(NetworkError.serverError(error)))
+            }
+            
+            if let decodedData = response.data {
+                completion(.success(decodedData))
+            } else {
+                completion(.failure(NetworkError.noDataError))
+            }
+            
+        case .failure(let error):
+            completion(.failure(error))
+        }
+    }
+    
+    /// Create a URLRequest.
     /// - Parameters:
     ///   - route: The path to the resource in the backend.
     ///   - method: Type of request to be made.
     ///   - parameters: Additional information that can be passed to the backend.
     /// - Returns: URLRequest
-    func createRequest(route: Route, method: Method, parameters: [String: Any]? = nil) -> URLRequest? {
+    private func createRequest(
+        route: Route,
+        method: Method,
+        parameters: [String: Any]? = nil
+    ) -> URLRequest? {
         
         /// Setup URL
         let urlString = Route.baseUrl + route.description
