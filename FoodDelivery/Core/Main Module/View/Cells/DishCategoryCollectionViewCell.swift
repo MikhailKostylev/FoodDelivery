@@ -32,6 +32,7 @@ class DishCategoryCollectionViewCell: UICollectionViewCell {
         label.text = "Test Message"
         label.textColor = .label
         label.textAlignment = .left
+        label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
     }()
     

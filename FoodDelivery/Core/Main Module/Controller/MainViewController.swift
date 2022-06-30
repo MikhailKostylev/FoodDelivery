@@ -6,49 +6,21 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class MainViewController: UIViewController {
     
     private var mainView: MainView!
     
-    private var categories: [DishCategory] = [
-        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/"),
-        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/"),
-        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/"),
-        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/"),
-        .init(id: "id5", name: "Dish5", image: "https://source.unsplash.com/random/"),
-        .init(id: "id6", name: "Dish6", image: "https://source.unsplash.com/random/"),
-        .init(id: "id7", name: "Dish7", image: "https://source.unsplash.com/random/"),
-        .init(id: "id8", name: "Dish8", image: "https://source.unsplash.com/random/"),
-        .init(id: "id9", name: "Dish9", image: "https://source.unsplash.com/random/"),
-    ]
-    
-    private var populars: [Dish] = [
-        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorit", calories: 111),
-        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "22Some text about current dish", calories: 222),
-        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "33Some text about current dish", calories: 333),
-        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "44Some text about current dish", calories: 444),
-        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "55Some text about current dish", calories: 555),
-        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "66Some text about current dish", calories: 777),
-        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "77Some text about current dish", calories: 888),
-        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "88Some text about current dish", calories: 999)
-    ]
-    
-    private var specials: [Dish] = [
-        .init(id: "id1", name: "Dish11", image: "https://source.unsplash.com/random/", description: "1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish", calories: 111),
-        .init(id: "id2", name: "Dish22", image: "https://source.unsplash.com/random/", description: "2Some text about current dish", calories: 222),
-        .init(id: "id3", name: "Dish33", image: "https://source.unsplash.com/random/", description: "3Some text about current dish", calories: 333),
-        .init(id: "id4", name: "Dish44", image: "https://source.unsplash.com/random/", description: "4Some text about current dish", calories: 444),
-        .init(id: "id1", name: "Dish55", image: "https://source.unsplash.com/random/", description: "5Some text about current dish", calories: 555),
-        .init(id: "id2", name: "Dish66", image: "https://source.unsplash.com/random/", description: "6Some text about current dish", calories: 777),
-        .init(id: "id3", name: "Dish77", image: "https://source.unsplash.com/random/", description: "7Some text about current dish", calories: 888),
-        .init(id: "id4", name: "Dish88", image: "https://source.unsplash.com/random/", description: "8Some text about current dish", calories: 999)
-    ]
+    private var categories: [DishCategory] = []
+    private var populars: [Dish] = []
+    private var specials: [Dish] = []
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchAllCategories()
         setAppWasLaunched()
         setupVC()
         setupMainView()
@@ -58,6 +30,28 @@ class MainViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mainView.frame = view.bounds
+    }
+    
+    // MARK: - Network
+    
+    private func fetchAllCategories() {
+        ProgressHUD.show()
+        NetworkService.shared.fetchAllCategories { [weak self] result in
+            switch result {
+            case .success(let allDishes):
+                ProgressHUD.dismiss()
+                self?.categories = allDishes.categories ?? []
+                self?.populars = allDishes.populars ?? []
+                self?.specials = allDishes.specials ?? []
+                
+                self?.mainView.categoryCollectionView.reloadData()
+                self?.mainView.popularCollectionView.reloadData()
+                self?.mainView.specialCollectionView.reloadData()
+                
+            case .failure(let error):
+                ProgressHUD.showError(error.localizedDescription)
+            }
+        }
     }
     
     // MARK: - Setups

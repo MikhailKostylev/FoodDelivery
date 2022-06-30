@@ -9,6 +9,14 @@ import Foundation
 
 struct NetworkService {
     
+    static let shared = NetworkService()
+    
+    private init() {}
+    
+    func fetchAllCategories(completion: @escaping (Result<AllDishes, Error>) -> Void) {
+        request(route: .fetchAllCategories, method: .get, completion: completion)
+    }
+    
     /// Make a network request.
     /// - Parameters:
     ///   - route: The path to the resource in the backend.
