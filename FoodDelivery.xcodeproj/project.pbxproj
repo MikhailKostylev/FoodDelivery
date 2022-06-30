@@ -12,6 +12,9 @@
 		1F1B3C0A286C9E0C00D824E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B3C09286C9E0C00D824E3 /* Constants.swift */; };
 		1F1B3C0E286CAC4800D824E3 /* DishListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B3C0D286CAC4800D824E3 /* DishListTableViewCell.swift */; };
 		1F1B3C12286CC48C00D824E3 /* DishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B3C11286CC48C00D824E3 /* DishListView.swift */; };
+		1F657924286DE52A005B6897 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F657923286DE52A005B6897 /* NetworkService.swift */; };
+		1F657926286DE600005B6897 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F657925286DE600005B6897 /* Route.swift */; };
+		1F657928286DE6F3005B6897 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F657927286DE6F3005B6897 /* Method.swift */; };
 		1FA3592928674C4800F2750D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3592828674C4800F2750D /* AppDelegate.swift */; };
 		1FA3592B28674C4800F2750D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3592A28674C4800F2750D /* SceneDelegate.swift */; };
 		1FA3592D28674C4800F2750D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA3592C28674C4800F2750D /* MainViewController.swift */; };
@@ -49,6 +52,9 @@
 		1F1B3C09286C9E0C00D824E3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1F1B3C0D286CAC4800D824E3 /* DishListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishListTableViewCell.swift; sourceTree = "<group>"; };
 		1F1B3C11286CC48C00D824E3 /* DishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishListView.swift; sourceTree = "<group>"; };
+		1F657923286DE52A005B6897 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		1F657925286DE600005B6897 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		1F657927286DE6F3005B6897 /* Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 		1FA3592528674C4800F2750D /* FoodDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA3592828674C4800F2750D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FA3592A28674C4800F2750D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +148,38 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		1F65791F286DE37F005B6897 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1FA3593F28676A2100F2750D /* Welcome Module */,
+				1FA3593E28674CD500F2750D /* Main Module */,
+				1FAAC40D286CDDC2001CA495 /* Order List Module */,
+				1F1B3C05286C9CA400D824E3 /* Dish List Module */,
+				1FF897E0286B471B00FAEF77 /* Detail Module */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1F657920286DE3BB005B6897 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				1F657923286DE52A005B6897 /* NetworkService.swift */,
+				1F657925286DE600005B6897 /* Route.swift */,
+				1F657927286DE6F3005B6897 /* Method.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		1F657922286DE3EB005B6897 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1FA3593C28674C6500F2750D /* Resources */,
+				1FA3594928676D0F00F2750D /* Extensions */,
+				1F1B3C08286C9DEA00D824E3 /* Constants */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		1FA3591C28674C4800F2750D = {
 			isa = PBXGroup;
 			children = (
@@ -163,16 +201,10 @@
 		1FA3592728674C4800F2750D /* FoodDelivery */ = {
 			isa = PBXGroup;
 			children = (
-				1FA3593628674C4B00F2750D /* Info.plist */,
 				1FA3593D28674C7100F2750D /* App */,
-				1FA3593F28676A2100F2750D /* Welcome Module */,
-				1FA3593E28674CD500F2750D /* Main Module */,
-				1FAAC40D286CDDC2001CA495 /* Order List Module */,
-				1F1B3C05286C9CA400D824E3 /* Dish List Module */,
-				1FF897E0286B471B00FAEF77 /* Detail Module */,
-				1FA3593C28674C6500F2750D /* Resources */,
-				1FA3594928676D0F00F2750D /* Extensions */,
-				1F1B3C08286C9DEA00D824E3 /* Constants */,
+				1F65791F286DE37F005B6897 /* Core */,
+				1F657920286DE3BB005B6897 /* Networking */,
+				1F657922286DE3EB005B6897 /* Utilities */,
 			);
 			path = FoodDelivery;
 			sourceTree = "<group>";
@@ -191,6 +223,7 @@
 			children = (
 				1FA3592828674C4800F2750D /* AppDelegate.swift */,
 				1FA3592A28674C4800F2750D /* SceneDelegate.swift */,
+				1FA3593628674C4B00F2750D /* Info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -506,14 +539,17 @@
 			files = (
 				1FA3594B28676D2B00F2750D /* UIView+Extension.swift in Sources */,
 				1FA3592D28674C4800F2750D /* MainViewController.swift in Sources */,
+				1F657926286DE600005B6897 /* Route.swift in Sources */,
 				1FD2367D2868A2010092F011 /* DishPortraitCollectionViewCell.swift in Sources */,
 				1FAAC416286CDF68001CA495 /* OrderListTableViewCell.swift in Sources */,
 				1FA3594328676BA600F2750D /* OnboardingSlideModel.swift in Sources */,
 				1FD2367F2868A2650092F011 /* DishLandscapeCollectionViewCell.swift in Sources */,
 				1F1B3C0E286CAC4800D824E3 /* DishListTableViewCell.swift in Sources */,
+				1F657928286DE6F3005B6897 /* Method.swift in Sources */,
 				1FF897E8286B6ADC00FAEF77 /* MainView.swift in Sources */,
 				1F1B3C0A286C9E0C00D824E3 /* Constants.swift in Sources */,
 				1F1B3C04286C8D4F00D824E3 /* UILabel+Extensions.swift in Sources */,
+				1F657924286DE52A005B6897 /* NetworkService.swift in Sources */,
 				1FA3592928674C4800F2750D /* AppDelegate.swift in Sources */,
 				1FA3592B28674C4800F2750D /* SceneDelegate.swift in Sources */,
 				1FA35950286770BB00F2750D /* UIColor+Extension.swift in Sources */,
@@ -674,7 +710,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RTJ9N9VRF5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FoodDelivery/Info.plist;
+				INFOPLIST_FILE = FoodDelivery/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Food Delivery";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -704,7 +740,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RTJ9N9VRF5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FoodDelivery/Info.plist;
+				INFOPLIST_FILE = FoodDelivery/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Food Delivery";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

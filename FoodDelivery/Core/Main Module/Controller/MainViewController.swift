@@ -67,6 +67,7 @@ class MainViewController: UIViewController {
     }
     
     private func setupVC() {
+        view.backgroundColor = Constants.backgroundColor
         title = "Food Delivery"
         navigationController?.navigationBar.tintColor = .appRed
         navigationItem.backButtonTitle = "Back"
