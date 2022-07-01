@@ -9,11 +9,17 @@ import Foundation
 
 extension UserDefaults {
     
-    static func setAppWasLaunched() {
-        standard.set(true, forKey: "wasAppLaunched")
+    private enum UserDefaultsKeys: String {
+        case hasOnboarded
     }
     
-    static func wasAppLaunched() -> Bool {
-        return standard.bool(forKey: "wasAppLaunched")
+    var hasOnboarded: Bool {
+        get {
+            bool(forKey: UserDefaultsKeys.hasOnboarded.rawValue)
+        }
+        
+        set {
+            setValue(newValue, forKey: UserDefaultsKeys.hasOnboarded.rawValue)
+        }
     }
 }

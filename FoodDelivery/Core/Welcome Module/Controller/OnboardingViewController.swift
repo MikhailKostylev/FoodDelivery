@@ -85,6 +85,7 @@ class OnboardingViewController: UIViewController {
     }
     
     private func goToMainVC() {
+        UserDefaults.standard.hasOnboarded = true
         let vc = MainViewController()
         let mainVC = UINavigationController(rootViewController: vc)
         mainVC.modalPresentationStyle = .fullScreen

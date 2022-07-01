@@ -11,13 +11,7 @@ class OrderListViewController: UIViewController {
     
     private var orderListView: OrderListView!
     
-    private var orders: [Order] = [
-        Order(id: "id1", name: "Dish1", dish: Dish(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorit", calories: 111)),
-        Order(id: "id2", name: "Dish2", dish: Dish(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorit", calories: 222)),
-        Order(id: "id3", name: "Dish3", dish: Dish(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorit", calories: 333)),
-        Order(id: "id4", name: "Dish4", dish: Dish(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorit", calories: 444)),
-        Order(id: "id5", name: "Dish5", dish: Dish(id: "id5", name: "Dish5", image: "https://source.unsplash.com/random/", description: "This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorit", calories: 555)),
-    ]
+    private var orders: [Order] = []
     
     // MARK: - Lifecycle
     
@@ -25,6 +19,12 @@ class OrderListViewController: UIViewController {
         super.viewDidLoad()
         setupVC()
         setupTableView()
+        showSpinner()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchOrders()
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,6 +53,26 @@ class OrderListViewController: UIViewController {
         view.addSubview(orderListView)
         orderListView?.tableView.delegate = self
         orderListView?.tableView.dataSource = self
+    }
+    
+    private func showSpinner() {
+        orderListView.showSpinner()
+    }
+    
+    // MARK: - Network
+    
+    private func fetchOrders() {
+        NetworkService.shared.fetchOrders { [weak self] result in
+            switch result {
+            case .success(let orders):
+                self?.orderListView.dismissSpinner()
+                self?.orders = orders
+                self?.orderListView.tableView.reloadData()
+                
+            case .failure(let error):
+                self?.orderListView.showErrorAlert(error: error)
+            }
+        }
     }
 }
 

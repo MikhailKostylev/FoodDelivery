@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class OrderListView: UIView {
     
@@ -25,7 +26,7 @@ class OrderListView: UIView {
         return table
     }()
     
-    // MARK: - Inir
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,7 +38,21 @@ class OrderListView: UIView {
         setupView()
     }
     
-    // MARK: - Setups
+    // MARK: - Public methods
+    
+    func showSpinner() {
+        ProgressHUD.show()
+    }
+    
+    func dismissSpinner() {
+        ProgressHUD.dismiss()
+    }
+    
+    func showErrorAlert(error: Error) {
+        ProgressHUD.showError(error.localizedDescription)
+    }
+    
+    // MARK: - Private methods
     
     private func setupView() {
         setupTableView()

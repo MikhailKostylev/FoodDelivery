@@ -27,6 +27,10 @@ struct NetworkService {
         request(route: .fetchCategoryDishes(categoryId), method: .get, completion: completion)
     }
     
+    func fetchOrders(completion: @escaping (Result<[Order], Error>) -> Void) {
+        request(route: .fetchOrders, method: .get, completion: completion)
+    }
+    
     // MARK: - Private methods
     
     /// Make a network request.
@@ -126,7 +130,7 @@ struct NetworkService {
                 urlComponent?.queryItems = parameters.map { URLQueryItem(name: $0, value: "\($1)") }
                 urlRequest.url = urlComponent?.url
                 
-            case .post, .delete, .patch:
+            case .post:
                 let bodyData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
                 urlRequest.httpBody = bodyData
             }

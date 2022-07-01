@@ -69,6 +69,8 @@ class DishListView: UIView {
         )
     }
     
+    // MARK: - Layout
+    
     private func setupLayout() {
         addSubview(tableView)
         addSubview(topView)

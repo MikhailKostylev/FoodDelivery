@@ -19,7 +19,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setAppWasLaunched()
         setupVC()
         setupMainView()
         setupBarButton()
@@ -54,10 +53,6 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Setups
-    
-    private func setAppWasLaunched() {
-        UserDefaults.setAppWasLaunched()
-    }
     
     private func setupVC() {
         view.backgroundColor = Constants.backgroundColor

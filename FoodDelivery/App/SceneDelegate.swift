@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func chooseRootVC() -> UIViewController {
-        if UserDefaults.wasAppLaunched() {
+        if UserDefaults.standard.hasOnboarded {
             let mainVC = MainViewController()
             return UINavigationController(rootViewController: mainVC)
         } else {
