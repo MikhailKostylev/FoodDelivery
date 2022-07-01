@@ -19,6 +19,8 @@ class OrderListViewController: UIViewController {
         Order(id: "id5", name: "Dish5", dish: Dish(id: "id5", name: "Dish5", image: "https://source.unsplash.com/random/", description: "This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorit", calories: 555)),
     ]
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
@@ -29,6 +31,8 @@ class OrderListViewController: UIViewController {
         super.viewDidLayoutSubviews()
         orderListView.tableView.frame = view.bounds
     }
+    
+    // MARK: - Setups
     
     private func setupVC() {
         view.backgroundColor = Constants.backgroundColor
@@ -51,6 +55,8 @@ class OrderListViewController: UIViewController {
         orderListView?.tableView.dataSource = self
     }
 }
+
+// MARK: - TableView methods
 
 extension OrderListViewController: UITableViewDelegate, UITableViewDataSource {
     

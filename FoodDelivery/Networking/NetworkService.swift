@@ -13,9 +13,21 @@ struct NetworkService {
     
     private init() {}
     
+    // MARK: - Public methods
+    
     func fetchAllCategories(completion: @escaping (Result<AllDishes, Error>) -> Void) {
         request(route: .fetchAllCategories, method: .get, completion: completion)
     }
+    
+    func placeOrder(dishId: String, name: String, completion: @escaping (Result<Order, Error>) -> Void) {
+        let parameters = ["name": name]
+        request(route: .placeOrder(dishId), method: .post, parameters: parameters, completion: completion)
+    }
+    func fetchCategoryDishes(categoryId: String, completion: @escaping (Result<[Dish], Error>) -> Void) {
+        request(route: .fetchCategoryDishes(categoryId), method: .get, completion: completion)
+    }
+    
+    // MARK: - Private methods
     
     /// Make a network request.
     /// - Parameters:

@@ -11,6 +11,8 @@ class OrderListView: UIView {
     
     private let tableCellHeight: CGFloat = 128
     
+    // MARK: - UI elements
+    
     private lazy var topView: UIView = {
         let view = UIView()
         view.backgroundColor = .appYellow
@@ -23,6 +25,8 @@ class OrderListView: UIView {
         return table
     }()
     
+    // MARK: - Inir
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -32,6 +36,8 @@ class OrderListView: UIView {
         super.init(coder: coder)
         setupView()
     }
+    
+    // MARK: - Setups
     
     private func setupView() {
         setupTableView()
@@ -47,6 +53,8 @@ class OrderListView: UIView {
             forCellReuseIdentifier: OrderListTableViewCell.id
         )
     }
+    
+    // MARK: - Layout
     
     private func setupLayout() {
         addSubview(tableView)

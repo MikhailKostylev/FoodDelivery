@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class MainView: UIView {
+    
+    private var name: String?
     
     private let padding: CGFloat = 16
     private let sectionInset: CGFloat = 15
@@ -132,15 +135,56 @@ class MainView: UIView {
         return collectionView
     }()
     
+    // MARK: - Init/Deinit
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupLayout()
+        setup()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupLayout()
+        setup()
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - Public methods
+    
+    func showSpinner() {
+        ProgressHUD.show()
+    }
+    
+    func dismissSpinner() {
+        ProgressHUD.dismiss()
+    }
+    
+    func showErrorAlert(error: Error) {
+        ProgressHUD.showError(error.localizedDescription)
+    }
+    
+    // MARK: - Private methods
+    
+    private func setup() {
+        setupLayout()
+        addObserver()
+    }
+    
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showSuccessAlert(_:)), name: .placeOrder, object: nil)
+    }
+    
+    @objc private func showSuccessAlert(_ notification: NSNotification) {
+        if let name = notification.userInfo?["name"] as? String {
+            ProgressHUD.showSuccess("\(name.capitalizingFirstLetter()), your order has been received.👨‍🍳🤌")
+        } else {
+            ProgressHUD.showSuccess("Your order has been received.👨‍🍳🤌")
+        }
+    }
+    
+    // MARK: - Layout
     
     private func setupLayout() {
         addSubview(topView)

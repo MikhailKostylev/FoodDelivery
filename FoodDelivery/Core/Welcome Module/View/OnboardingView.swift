@@ -62,6 +62,8 @@ class OnboardingView: UIView {
         return button
     }()
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -71,6 +73,8 @@ class OnboardingView: UIView {
         super.init(coder: coder)
         setupView()
     }
+    
+    // MARK: - Setups
     
     private func setupView() {
         setupCollectionView()
@@ -93,6 +97,8 @@ class OnboardingView: UIView {
             forCellWithReuseIdentifier: OnboardingSlideCollectionViewCell.identifier
         )
     }
+    
+    // MARK: - Layout
     
     private func setupLayout() {
         addSubview(collectionView)

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ProgressHUD
 
 class MainViewController: UIViewController {
     
@@ -20,11 +19,11 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchAllCategories()
         setAppWasLaunched()
         setupVC()
         setupMainView()
         setupBarButton()
+        fetchAllCategories()
     }
     
     override func viewDidLayoutSubviews() {
@@ -35,11 +34,11 @@ class MainViewController: UIViewController {
     // MARK: - Network
     
     private func fetchAllCategories() {
-        ProgressHUD.show()
+        mainView.showSpinner()
         NetworkService.shared.fetchAllCategories { [weak self] result in
             switch result {
             case .success(let allDishes):
-                ProgressHUD.dismiss()
+                self?.mainView.dismissSpinner()
                 self?.categories = allDishes.categories ?? []
                 self?.populars = allDishes.populars ?? []
                 self?.specials = allDishes.specials ?? []
@@ -49,7 +48,7 @@ class MainViewController: UIViewController {
                 self?.mainView.specialCollectionView.reloadData()
                 
             case .failure(let error):
-                ProgressHUD.showError(error.localizedDescription)
+                self?.mainView.showErrorAlert(error: error)
             }
         }
     }
@@ -104,7 +103,7 @@ class MainViewController: UIViewController {
     }
 }
 
-// MARK: - Collection's Methods
+// MARK: - Collection's methods
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     

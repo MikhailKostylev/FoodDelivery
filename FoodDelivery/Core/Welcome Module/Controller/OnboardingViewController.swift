@@ -106,7 +106,7 @@ class OnboardingViewController: UIViewController {
     }
 }
 
-// MARK: - CollectionView Methods
+// MARK: - CollectionView methods
 
 extension OnboardingViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     

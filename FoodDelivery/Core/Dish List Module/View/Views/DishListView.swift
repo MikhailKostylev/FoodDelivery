@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class DishListView: UIView {
     
     private let tableCellHeight: CGFloat = 114
+    
+    // MARK: - UI elements
     
     private lazy var topView: UIView = {
         let view = UIView()
@@ -23,6 +26,8 @@ class DishListView: UIView {
         return table
     }()
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -32,6 +37,22 @@ class DishListView: UIView {
         super.init(coder: coder)
         setupView()
     }
+    
+    // MARK: - Public methods
+    
+    func showSpinner() {
+        ProgressHUD.show()
+    }
+    
+    func dismissSpinner() {
+        ProgressHUD.dismiss()
+    }
+    
+    func showErrorAlert(error: Error) {
+        ProgressHUD.showError(error.localizedDescription)
+    }
+    
+    // MARK: - Private methods
     
     private func setupView() {
         setupTableView()

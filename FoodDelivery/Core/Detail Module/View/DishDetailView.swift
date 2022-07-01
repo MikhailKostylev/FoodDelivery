@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import ProgressHUD
+
+protocol DishDetailViewProtocol: AnyObject {
+    func didTapPlaceOrderButton(name: String)
+}
 
 class DishDetailView: UIView {
+    
+    weak var delegate: DishDetailViewProtocol?
             
     private let padding: CGFloat = 16
     private let backViewHeight: CGFloat = 44
@@ -16,6 +23,8 @@ class DishDetailView: UIView {
     private let nameTextFieldHeight: CGFloat = 50
     private let placeOrderButtonHeight: CGFloat = 50
     private let descriptionLabelHeight: CGFloat = 50
+    
+    // MARK: - UI elements
     
     lazy var backView: UIView = {
         let view = UIView()
@@ -29,6 +38,7 @@ class DishDetailView: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
+        imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         return imageView
     }()
     
@@ -36,7 +46,7 @@ class DishDetailView: UIView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
         stackView.spacing = padding
         return stackView
     }()
@@ -97,7 +107,7 @@ class DishDetailView: UIView {
         return field
     }()
     
-    private let placeOrderButton: UIButton = {
+    private lazy var placeOrderButton: UIButton = {
         let button = UIButton()
         button.setTitle("Place Order", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -108,14 +118,22 @@ class DishDetailView: UIView {
         return button
     }()
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupLayout()
+        setup()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupLayout()
+        setup()
+    }
+    
+    // MARK: - Public methods
+    
+    func showErrorAlert(error: Error) {
+        ProgressHUD.showError(error.localizedDescription)
     }
     
     func showBackView() {
@@ -130,8 +148,41 @@ class DishDetailView: UIView {
         }
     }
     
+    // MARK: - Private methods
+    
+    private func setup() {
+        setupTextFieldDelefate()
+        addAction()
+        setupLayout()
+    }
+    
+    private func setupTextFieldDelefate() {
+        nameTextField.delegate = self
+    }
+    
+    private func addAction() {
+        placeOrderButton.addTarget(
+            self,
+            action: #selector(didTapPlaceOrderButton),
+            for: .touchUpInside
+        )
+    }
+    
+    @objc private func didTapPlaceOrderButton() {
+        guard let name = nameTextField.text?.trimmingCharacters(in: .whitespaces),
+              !name.isEmpty else {
+            ProgressHUD.showError("Please enter your name.")
+            return
+        }
+        
+        ProgressHUD.show("Placing Order...")
+        delegate?.didTapPlaceOrderButton(name: name)
+    }
+    
+    // MARK: - Layout
+    
     private func setupLayout() {
-        self.backgroundColor = Constants.backgroundColor
+        backgroundColor = Constants.backgroundColor
         addSubview(imageView)
         addSubview(backView)
         addSubview(vStackView)
@@ -155,12 +206,12 @@ class DishDetailView: UIView {
         let constraints = [
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             imageView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            imageView.topAnchor.constraint(equalTo: self.topAnchor),
+            imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: -padding/3),
             
             backView.widthAnchor.constraint(equalToConstant: backViewWidth),
             backView.heightAnchor.constraint(equalToConstant: backViewHeight),
             backView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            backView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 5),
+            backView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: padding/3),
             
             vStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: padding),
             vStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
@@ -174,5 +225,18 @@ class DishDetailView: UIView {
             placeOrderButton.heightAnchor.constraint(equalToConstant: placeOrderButtonHeight)
         ]
         NSLayoutConstraint.activate(constraints)
+    }
+}
+
+// MARK: - TextField Delegate
+
+extension DishDetailView: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == nameTextField {
+            nameTextField.resignFirstResponder()
+            didTapPlaceOrderButton()
+        }
+        return true
     }
 }

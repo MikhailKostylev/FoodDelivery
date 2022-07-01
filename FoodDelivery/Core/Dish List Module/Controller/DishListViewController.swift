@@ -12,16 +12,9 @@ class DishListViewController: UIViewController {
     private var dishListView: DishListView!
     
     private var category: DishCategory?
-    private var dishes: [Dish] = [
-        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorite dish1This is my favorit", calories: 111),
-        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "22Some text about current dish", calories: 222),
-        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "33Some text about current dish", calories: 333),
-        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "44Some text about current dish", calories: 444),
-        .init(id: "id1", name: "Dish1", image: "https://source.unsplash.com/random/", description: "55Some text about current dish", calories: 555),
-        .init(id: "id2", name: "Dish2", image: "https://source.unsplash.com/random/", description: "66Some text about current dish", calories: 777),
-        .init(id: "id3", name: "Dish3", image: "https://source.unsplash.com/random/", description: "77Some text about current dish", calories: 888),
-        .init(id: "id4", name: "Dish4", image: "https://source.unsplash.com/random/", description: "88Some text about current dish", calories: 999)
-    ]
+    private var dishes: [Dish] = []
+    
+    // MARK: - Init
     
     init(category: DishCategory) {
         self.category = category
@@ -32,16 +25,21 @@ class DishListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
         setupTableView()
+        fetchCategoryDishes()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         dishListView.tableView.frame = view.bounds
     }
+    
+    // MARK: - Setups
     
     private func setupVC() {
         view.backgroundColor = Constants.backgroundColor
@@ -63,7 +61,29 @@ class DishListViewController: UIViewController {
         dishListView?.tableView.delegate = self
         dishListView?.tableView.dataSource = self
     }
+    
+    // MARK: - Network
+    
+    private func fetchCategoryDishes() {
+        dishListView.showSpinner()
+        
+        guard let categoryId = category?.id else { return }
+                
+        NetworkService.shared.fetchCategoryDishes(categoryId: categoryId) { [weak self] result in
+            switch result {
+            case .success(let dishes):
+                self?.dishListView.dismissSpinner()
+                self?.dishes = dishes
+                self?.dishListView.tableView.reloadData()
+                
+            case .failure(let error):
+                self?.dishListView.showErrorAlert(error: error)
+            }
+        }
+    }
 }
+
+// MARK: - TableView methods
 
 extension DishListViewController: UITableViewDelegate, UITableViewDataSource {
     
