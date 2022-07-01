@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SkeletonView
 
 class DishPortraitCollectionViewCell: UICollectionViewCell {
     
@@ -71,14 +72,6 @@ class DishPortraitCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
     func configure(model: Dish) {
         titleLabel.text = model.name
         imageView.kf.setImage(with: model.image?.asUrl)
@@ -87,7 +80,8 @@ class DishPortraitCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupCell() {
-        self.clipsToBounds = false
+        clipsToBounds = false
+        isSkeletonable = true
     }
         
     private func setupLayout() {

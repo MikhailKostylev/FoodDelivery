@@ -8,5 +8,6 @@ target 'FoodDelivery' do
   pod 'Kingfisher'
   pod 'ProgressHUD'
   pod 'IQKeyboardManagerSwift'
+  pod 'SkeletonView'
 
 end

@@ -17,6 +17,7 @@ class DishDetailView: UIView {
     weak var delegate: DishDetailViewProtocol?
             
     private let padding: CGFloat = 16
+    private let cornerRadius: CGFloat = 10
     private let backViewHeight: CGFloat = 44
     private let backViewWidth: CGFloat = 75
     private let caloriesLabelWidth: CGFloat = 100
@@ -96,7 +97,7 @@ class DishDetailView: UIView {
         field.autocorrectionType = .no
         field.returnKeyType = .done
         field.keyboardType = .default
-        field.layer.cornerRadius = 10
+        field.layer.cornerRadius = cornerRadius
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
         field.layer.masksToBounds = true
@@ -113,7 +114,7 @@ class DishDetailView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         button.backgroundColor = .appRed
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = cornerRadius
         button.layer.masksToBounds = true
         return button
     }()

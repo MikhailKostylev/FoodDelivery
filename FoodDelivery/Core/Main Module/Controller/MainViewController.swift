@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class MainViewController: UIViewController {
     
@@ -14,7 +15,7 @@ class MainViewController: UIViewController {
     private var categories: [DishCategory] = []
     private var populars: [Dish] = []
     private var specials: [Dish] = []
-    
+        
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -22,34 +23,13 @@ class MainViewController: UIViewController {
         setupVC()
         setupMainView()
         setupBarButton()
+        showSkeletonCells()
         fetchAllCategories()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         mainView.frame = view.bounds
-    }
-    
-    // MARK: - Network
-    
-    private func fetchAllCategories() {
-        mainView.showSpinner()
-        NetworkService.shared.fetchAllCategories { [weak self] result in
-            switch result {
-            case .success(let allDishes):
-                self?.mainView.dismissSpinner()
-                self?.categories = allDishes.categories ?? []
-                self?.populars = allDishes.populars ?? []
-                self?.specials = allDishes.specials ?? []
-                
-                self?.mainView.categoryCollectionView.reloadData()
-                self?.mainView.popularCollectionView.reloadData()
-                self?.mainView.specialCollectionView.reloadData()
-                
-            case .failure(let error):
-                self?.mainView.showErrorAlert(error: error)
-            }
-        }
     }
     
     // MARK: - Setups
@@ -90,6 +70,42 @@ class MainViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = .appRed
     }
     
+    private func showSkeletonCells() {
+        mainView.categoryCollectionView.isSkeletonable = true
+        mainView.popularCollectionView.isSkeletonable = true
+        mainView.specialCollectionView.isSkeletonable = true
+        
+        mainView.categoryCollectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .secondarySystemBackground, secondaryColor: .systemBackground), animation: nil, transition: .crossDissolve(1))
+        mainView.popularCollectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .secondarySystemBackground, secondaryColor: .systemBackground), animation: nil, transition: .crossDissolve(1))
+        mainView.specialCollectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .secondarySystemBackground, secondaryColor: .systemBackground), animation: nil, transition: .crossDissolve(1))
+    }
+    
+    // MARK: - Network
+    
+    private func fetchAllCategories() {
+        mainView.showSpinner()
+        
+        NetworkService.shared.fetchAllCategories { [weak self] result in
+            guard let self = self else { return }
+                        
+            switch result {
+            case .success(let allDishes):
+                self.mainView.dismissSpinner()
+                
+                self.categories = allDishes.categories ?? []
+                self.populars = allDishes.populars ?? []
+                self.specials = allDishes.specials ?? []
+                
+                self.mainView.categoryCollectionView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.2))
+                self.mainView.popularCollectionView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.2))
+                self.mainView.specialCollectionView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.2))
+                
+            case .failure(let error):
+                self.mainView.showErrorAlert(error: error)
+            }
+        }
+    }
+    
     // MARK: - Actions
     
     @objc private func didTapCartButton() {
@@ -100,7 +116,7 @@ class MainViewController: UIViewController {
 
 // MARK: - Collection's methods
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDelegate, SkeletonCollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
@@ -114,23 +130,23 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case mainView.categoryCollectionView:
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: DishCategoryCollectionViewCell.id,
-                for: indexPath) as! DishCategoryCollectionViewCell
-            cell.configure(model: categories[indexPath.row])
-            return cell
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: DishCategoryCollectionViewCell.id,
+                    for: indexPath) as! DishCategoryCollectionViewCell
+                cell.configure(model: categories[indexPath.row])
+                return cell
         case mainView.popularCollectionView:
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: DishPortraitCollectionViewCell.id,
-                for: indexPath) as! DishPortraitCollectionViewCell
-            cell.configure(model: populars[indexPath.row])
-            return cell
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: DishPortraitCollectionViewCell.id,
+                    for: indexPath) as! DishPortraitCollectionViewCell
+                cell.configure(model: populars[indexPath.row])
+                return cell
         case mainView.specialCollectionView:
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: DishLandscapeCollectionViewCell.id,
-                for: indexPath) as! DishLandscapeCollectionViewCell
-            cell.configure(model: specials[indexPath.row])
-            return cell
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: DishLandscapeCollectionViewCell.id,
+                    for: indexPath) as! DishLandscapeCollectionViewCell
+                cell.configure(model: specials[indexPath.row])
+                return cell
         default:
             return UICollectionViewCell()
         }
@@ -147,6 +163,16 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let dish = collectionView == mainView.popularCollectionView ? populars[indexPath.row] : specials[indexPath.row]
             let vc = DishDetailViewController(dish: dish)
             navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        switch skeletonView {
+        case mainView.categoryCollectionView: return DishCategoryCollectionViewCell.id
+        case mainView.popularCollectionView: return DishPortraitCollectionViewCell.id
+        case mainView.specialCollectionView: return DishLandscapeCollectionViewCell.id
+        default:
+            return ""
         }
     }
 }

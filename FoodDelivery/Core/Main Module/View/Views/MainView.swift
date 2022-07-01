@@ -92,8 +92,7 @@ class MainView: UIView {
         collectionView.clipsToBounds = false
         collectionView.register(
             DishCategoryCollectionViewCell.self,
-            forCellWithReuseIdentifier: DishCategoryCollectionViewCell.id
-        )
+            forCellWithReuseIdentifier: DishCategoryCollectionViewCell.id)
         return collectionView
     }()
     
@@ -111,8 +110,7 @@ class MainView: UIView {
         collectionView.clipsToBounds = false
         collectionView.register(
             DishPortraitCollectionViewCell.self,
-            forCellWithReuseIdentifier: DishPortraitCollectionViewCell.id
-        )
+            forCellWithReuseIdentifier: DishPortraitCollectionViewCell.id)
         return collectionView
     }()
     
@@ -130,8 +128,7 @@ class MainView: UIView {
         collectionView.clipsToBounds = false
         collectionView.register(
             DishLandscapeCollectionViewCell.self,
-            forCellWithReuseIdentifier: DishLandscapeCollectionViewCell.id
-        )
+            forCellWithReuseIdentifier: DishLandscapeCollectionViewCell.id)
         return collectionView
     }()
     
@@ -173,7 +170,12 @@ class MainView: UIView {
     }
     
     private func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(showSuccessAlert(_:)), name: .placeOrder, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(showSuccessAlert(_:)),
+            name: .placeOrder,
+            object: nil
+        )
     }
     
     @objc private func showSuccessAlert(_ notification: NSNotification) {

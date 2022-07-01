@@ -11,4 +11,5 @@ public enum Constants {
     static let backgroundColor = UIColor.secondarySystemBackground
     static let foregroundColor = UIColor.systemBackground
     static let shadow =  UIColor.label.cgColor
+    static let cornerRadius: CGFloat = 10
 }

@@ -13,6 +13,8 @@ class OrderListViewController: UIViewController {
     
     private var orders: [Order] = []
     
+    private var vcIsLoaded = false
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -30,6 +32,10 @@ class OrderListViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         orderListView.tableView.frame = view.bounds
+    }
+    
+    deinit {
+        orderListView.dismissSpinner()
     }
     
     // MARK: - Setups
@@ -63,14 +69,23 @@ class OrderListViewController: UIViewController {
     
     private func fetchOrders() {
         NetworkService.shared.fetchOrders { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let orders):
-                self?.orderListView.dismissSpinner()
-                self?.orders = orders
-                self?.orderListView.tableView.reloadData()
+                if self.vcIsLoaded {
+                    self.orderListView.dismissSpinner()
+                    self.orders = orders
+                    self.orderListView.tableView.reloadData()
+                } else {
+                    self.orderListView.dismissSpinner()
+                    self.orders = orders
+                    self.orderListView.tableView.animateTableView()
+                    self.vcIsLoaded = true
+                }
                 
             case .failure(let error):
-                self?.orderListView.showErrorAlert(error: error)
+                self.orderListView.showErrorAlert(error: error)
             }
         }
     }

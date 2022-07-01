@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SkeletonView
 
 class DishCategoryCollectionViewCell: UICollectionViewCell {
     
@@ -29,7 +30,6 @@ class DishCategoryCollectionViewCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Test Message"
         label.textColor = .label
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 14, weight: .regular)
@@ -46,21 +46,14 @@ class DishCategoryCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
     func configure(model: DishCategory) {
         titleLabel.text = model.name
         imageView.kf.setImage(with: model.image?.asUrl)
     }
     
     private func setupCell() {
-        self.clipsToBounds = false
+        clipsToBounds = false
+        isSkeletonable = true
     }
         
     private func setupLayout() {
