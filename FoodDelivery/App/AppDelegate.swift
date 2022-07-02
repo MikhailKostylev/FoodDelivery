@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 import IQKeyboardManagerSwift
 
 @main
@@ -22,21 +23,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Private methods
     
     private func setupNavBar() {
+        UINavigationBar.appearance().titleTextAttributes = configureTitleTextAttributes()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().tintColor = .label
+    }
+    
+    private func configureTitleTextAttributes() -> [NSAttributedString.Key: NSObject] {
         let myShadow = NSShadow()
         myShadow.shadowBlurRadius = 3
         myShadow.shadowOffset = CGSize(width: 1, height: 1)
         myShadow.shadowColor = UIColor.label.withAlphaComponent(0.7)
         
-        let attrs = [
+        return [
             NSAttributedString.Key.foregroundColor: UIColor.secondarySystemBackground,
             NSAttributedString.Key.font: UIFont(name: "Futura-Bold", size: 22)!,
             NSAttributedString.Key.shadow: myShadow
         ]
-
-        UINavigationBar.appearance().titleTextAttributes = attrs
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().tintColor = .label
     }
     
     private func setupIQKeyboard() {

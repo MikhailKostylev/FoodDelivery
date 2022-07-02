@@ -7,12 +7,11 @@
 
 import UIKit
 
-class OrderListViewController: UIViewController {
+final class OrderListViewController: UIViewController {
     
     private var orderListView: OrderListView!
     
     private var orders: [Order] = []
-    
     private var vcIsLoaded = false
     
     // MARK: - Lifecycle
@@ -27,11 +26,6 @@ class OrderListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchOrders()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        orderListView.tableView.frame = view.bounds
     }
     
     deinit {

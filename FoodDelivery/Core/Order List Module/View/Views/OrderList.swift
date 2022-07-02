@@ -8,7 +8,7 @@
 import UIKit
 import ProgressHUD
 
-class OrderListView: UIView {
+final class OrderListView: UIView {
     
     private let tableCellHeight: CGFloat = 128
     
@@ -79,17 +79,16 @@ class OrderListView: UIView {
         topView.prepareForAutoLayout()
         
         let constraints = [
-            topView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            topView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            topView.topAnchor.constraint(equalTo: self.topAnchor),
-            topView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            topView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            topView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            topView.topAnchor.constraint(equalTo: topAnchor),
+            topView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             
-            tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ]
-        
         NSLayoutConstraint.activate(constraints)
     }
 }

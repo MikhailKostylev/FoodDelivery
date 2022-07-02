@@ -8,7 +8,6 @@
 import Foundation
 
 enum Route {
-    
     static let baseUrl = "https://yummie.glitch.me"
     
     case fetchAllCategories

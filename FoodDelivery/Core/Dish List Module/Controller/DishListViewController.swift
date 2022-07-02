@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DishListViewController: UIViewController {
+final class DishListViewController: UIViewController {
     
     private var dishListView: DishListView!
     
@@ -34,11 +34,6 @@ class DishListViewController: UIViewController {
         fetchCategoryDishes()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        dishListView.tableView.frame = view.bounds
-    }
-    
     // MARK: - Setups
     
     private func setupVC() {
@@ -56,7 +51,7 @@ class DishListViewController: UIViewController {
                 height: view.height
             )
         )
-                
+        
         view.addSubview(dishListView)
         dishListView?.tableView.delegate = self
         dishListView?.tableView.dataSource = self
@@ -68,7 +63,7 @@ class DishListViewController: UIViewController {
         dishListView.showSpinner()
         
         guard let categoryId = category?.id else { return }
-                
+        
         NetworkService.shared.fetchCategoryDishes(categoryId: categoryId) { [weak self] result in
             switch result {
             case .success(let dishes):
@@ -99,7 +94,7 @@ extension DishListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dish = dishes[indexPath.row]
         let vc = DishDetailViewController(dish: dish)
         navigationController?.pushViewController(vc, animated: true)

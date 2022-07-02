@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingView: UIView {
+final class OnboardingView: UIView {
     
     private let collectionHeightMultiplier: CGFloat = 0.8
     private let buttonHeight: CGFloat = 50
@@ -84,7 +84,7 @@ class OnboardingView: UIView {
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: self.width, height: self.height * collectionHeightMultiplier)
+        layout.itemSize = CGSize(width: width, height: height * collectionHeightMultiplier)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         
@@ -116,26 +116,26 @@ class OnboardingView: UIView {
         skipButton.prepareForAutoLayout()
         
         let constraints = [
-            collectionView.topAnchor.constraint(equalTo: self.topAnchor),
-            collectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            collectionView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            collectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: collectionHeightMultiplier),
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            collectionView.widthAnchor.constraint(equalTo: widthAnchor),
+            collectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: collectionHeightMultiplier),
             
-            containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            containerView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            containerView.widthAnchor.constraint(equalTo: widthAnchor),
             containerView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
-            containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: cornerRadius),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: cornerRadius),
             
             stackView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: padding),
-            stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            stackView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackView.widthAnchor.constraint(equalTo: widthAnchor),
             
             nextButton.widthAnchor.constraint(equalToConstant: buttonWidth),
             nextButton.heightAnchor.constraint(equalToConstant: buttonHeight),
             
             skipButton.topAnchor.constraint(equalTo: nextButton.topAnchor),
             skipButton.leadingAnchor.constraint(equalTo: nextButton.trailingAnchor),
-            skipButton.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            skipButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             skipButton.heightAnchor.constraint(equalToConstant: buttonHeight)
         ]
         NSLayoutConstraint.activate(constraints)

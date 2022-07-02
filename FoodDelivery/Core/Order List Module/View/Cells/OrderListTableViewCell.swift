@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class OrderListTableViewCell: UITableViewCell {
+final class OrderListTableViewCell: UITableViewCell {
 
     static let id = String(describing: OrderListTableViewCell.self)
     
@@ -60,28 +60,20 @@ class OrderListTableViewCell: UITableViewCell {
         setupLayout()
     }
     
+    func configure(model: Order) {
+        dishImageView.kf.setImage(with: model.dish?.image?.asUrl)
+        titleLabel.text = model.dish?.name
+        descriptionLabel.text = model.name
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
     }
     
     private func setupCell() {
         clipsToBounds = false
         selectionStyle = .none
         contentView.backgroundColor = Constants.backgroundColor
-    }
-    
-    func configure(model: Order) {
-        dishImageView.kf.setImage(with: model.dish?.image?.asUrl)
-        titleLabel.text = model.dish?.name
-        descriptionLabel.text = model.name
     }
         
     private func setupLayout() {

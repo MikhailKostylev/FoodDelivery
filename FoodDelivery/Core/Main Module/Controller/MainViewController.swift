@@ -8,14 +8,14 @@
 import UIKit
 import SkeletonView
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     private var mainView: MainView!
     
     private var categories: [DishCategory] = []
     private var populars: [Dish] = []
     private var specials: [Dish] = []
-        
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -25,11 +25,6 @@ class MainViewController: UIViewController {
         setupBarButton()
         showSkeletonCells()
         fetchAllCategories()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        mainView.frame = view.bounds
     }
     
     // MARK: - Setups
@@ -87,7 +82,7 @@ class MainViewController: UIViewController {
         
         NetworkService.shared.fetchAllCategories { [weak self] result in
             guard let self = self else { return }
-                        
+            
             switch result {
             case .success(let allDishes):
                 self.mainView.dismissSpinner()
@@ -130,23 +125,23 @@ extension MainViewController: UICollectionViewDelegate, SkeletonCollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case mainView.categoryCollectionView:
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: DishCategoryCollectionViewCell.id,
-                    for: indexPath) as! DishCategoryCollectionViewCell
-                cell.configure(model: categories[indexPath.row])
-                return cell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: DishCategoryCollectionViewCell.id,
+                for: indexPath) as! DishCategoryCollectionViewCell
+            cell.configure(model: categories[indexPath.row])
+            return cell
         case mainView.popularCollectionView:
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: DishPortraitCollectionViewCell.id,
-                    for: indexPath) as! DishPortraitCollectionViewCell
-                cell.configure(model: populars[indexPath.row])
-                return cell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: DishPortraitCollectionViewCell.id,
+                for: indexPath) as! DishPortraitCollectionViewCell
+            cell.configure(model: populars[indexPath.row])
+            return cell
         case mainView.specialCollectionView:
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: DishLandscapeCollectionViewCell.id,
-                    for: indexPath) as! DishLandscapeCollectionViewCell
-                cell.configure(model: specials[indexPath.row])
-                return cell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: DishLandscapeCollectionViewCell.id,
+                for: indexPath) as! DishLandscapeCollectionViewCell
+            cell.configure(model: specials[indexPath.row])
+            return cell
         default:
             return UICollectionViewCell()
         }

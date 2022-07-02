@@ -8,10 +8,8 @@
 import UIKit
 import ProgressHUD
 
-class MainView: UIView {
-    
-    private var name: String?
-    
+final class MainView: UIView {
+        
     private let padding: CGFloat = 16
     private let sectionInset: CGFloat = 15
     private let sideInset: CGFloat = 20
@@ -216,15 +214,15 @@ class MainView: UIView {
         specialCollectionView.prepareForAutoLayout()
                 
         let constraints = [
-            topView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            topView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            topView.topAnchor.constraint(equalTo: self.topAnchor),
-            topView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            topView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            topView.widthAnchor.constraint(equalTo: widthAnchor),
+            topView.topAnchor.constraint(equalTo: topAnchor),
+            topView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             
-            scrollView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            scrollView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            scrollView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            scrollView.widthAnchor.constraint(equalTo: widthAnchor),
             scrollView.topAnchor.constraint(equalTo: topView.bottomAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             containerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingSlideCollectionViewCell: UICollectionViewCell {
+final class OnboardingSlideCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "OnboardingSlideCollectionViewCell"
     
@@ -62,6 +62,12 @@ class OnboardingSlideCollectionViewCell: UICollectionViewCell {
         setupLayout()
     }
     
+    func configure(with slide: OnboardingSlideModel) {
+        imageView.image = UIImage(named: slide.image)
+        titleLabel.text = slide.title
+        subtitleLabel.text = slide.subtitle
+    }
+    
     private func setupCell() {
         contentView.backgroundColor = .white
     }
@@ -85,14 +91,7 @@ class OnboardingSlideCollectionViewCell: UICollectionViewCell {
             stackView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: padding),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding*2),
         ]
-        
         NSLayoutConstraint.activate(constraints)
-    }
-    
-    func configure(with slide: OnboardingSlideModel) {
-        imageView.image = UIImage(named: slide.image)
-        titleLabel.text = slide.title
-        subtitleLabel.text = slide.subtitle
     }
 }
 

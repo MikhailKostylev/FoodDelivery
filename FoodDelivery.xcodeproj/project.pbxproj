@@ -280,8 +280,8 @@
 		1FA3594628676BC400F2750D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1FA3594728676C0C00F2750D /* OnboardingCollectionViewCell.swift */,
-				1FF897ED286B90D300FAEF77 /* OnboardingView.swift */,
+				1FA9D2022870428700883B1F /* Cells */,
+				1FA9D2032870429100883B1F /* Views */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -298,6 +298,22 @@
 				1FA22EA3286F154E00C93F0B /* NSNotification.Name+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1FA9D2022870428700883B1F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1FA3594728676C0C00F2750D /* OnboardingCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1FA9D2032870429100883B1F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1FF897ED286B90D300FAEF77 /* OnboardingView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		1FAAC40D286CDDC2001CA495 /* Order List Module */ = {

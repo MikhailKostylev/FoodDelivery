@@ -12,7 +12,7 @@ protocol DishDetailViewProtocol: AnyObject {
     func didTapPlaceOrderButton(name: String)
 }
 
-class DishDetailView: UIView {
+final class DishDetailView: UIView {
     
     weak var delegate: DishDetailViewProtocol?
             
@@ -83,7 +83,6 @@ class DishDetailView: UIView {
     
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = ""
         label.numberOfLines = 10
         label.textColor = .label.withAlphaComponent(0.7)
         label.textAlignment = .natural
@@ -205,19 +204,19 @@ class DishDetailView: UIView {
         placeOrderButton.prepareForAutoLayout()
         
         let constraints = [
-            imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            imageView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: -padding/3),
+            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageView.widthAnchor.constraint(equalTo: widthAnchor),
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: -padding/3),
             
             backView.widthAnchor.constraint(equalToConstant: backViewWidth),
             backView.heightAnchor.constraint(equalToConstant: backViewHeight),
-            backView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            backView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: padding/3),
+            backView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            backView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: padding/3),
             
-            vStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: padding),
-            vStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
+            vStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: padding),
+            vStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -padding),
             vStackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: padding),
-            vStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
+            vStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -padding),
                                     
             caloriesLabel.widthAnchor.constraint(equalToConstant: caloriesLabelWidth),
             

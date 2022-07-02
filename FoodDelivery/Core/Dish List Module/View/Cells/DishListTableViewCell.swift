@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class DishListTableViewCell: UITableViewCell {
+final class DishListTableViewCell: UITableViewCell {
 
     static let id = String(describing: DishListTableViewCell.self)
     
@@ -64,24 +64,16 @@ class DishListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    func configure(model: Dish) {
+        dishImageView.kf.setImage(with: model.image?.asUrl)
+        titleLabel.text = model.name
+        descriptionLabel.text = model.description
     }
     
     private func setupCell() {
         clipsToBounds = false
         selectionStyle = .none
         contentView.backgroundColor = Constants.backgroundColor
-    }
-    
-    func configure(model: Dish) {
-        dishImageView.kf.setImage(with: model.image?.asUrl)
-        titleLabel.text = model.name
-        descriptionLabel.text = model.description
     }
         
     private func setupLayout() {

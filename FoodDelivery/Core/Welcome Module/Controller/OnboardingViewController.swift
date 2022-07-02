@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OnboardingViewController: UIViewController {
+final class OnboardingViewController: UIViewController {
     
     private var onboardingView: OnboardingView!
     
@@ -34,11 +34,6 @@ class OnboardingViewController: UIViewController {
         setupSlidesContent()
         setupPageControl()
         addActions()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        onboardingView.frame = view.bounds
     }
     
     // MARK: - Setups

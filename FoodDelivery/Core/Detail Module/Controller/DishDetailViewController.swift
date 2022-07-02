@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class DishDetailViewController: UIViewController {
+final class DishDetailViewController: UIViewController {
     
     var dish: Dish
     var dishDetailView: DishDetailView!
@@ -36,11 +36,6 @@ class DishDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         dishDetailView.showBackView()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        dishDetailView.frame = view.bounds
     }
     
     // MARK: - Setups

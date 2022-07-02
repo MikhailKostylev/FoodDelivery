@@ -31,11 +31,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func chooseRootVC() -> UIViewController {
         if UserDefaults.standard.hasOnboarded {
-            let mainVC = MainViewController()
-            return UINavigationController(rootViewController: mainVC)
+            return UINavigationController(rootViewController: MainViewController())
         } else {
-            let onboardingVC = OnboardingViewController()
-            return onboardingVC
+            return OnboardingViewController()
         }
     }
     

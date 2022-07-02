@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import SkeletonView
 
-class DishCategoryCollectionViewCell: UICollectionViewCell {
+final class DishCategoryCollectionViewCell: UICollectionViewCell {
     
     static let id = String(describing: DishCategoryCollectionViewCell.self)
     
