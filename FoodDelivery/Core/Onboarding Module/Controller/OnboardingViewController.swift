@@ -60,7 +60,7 @@ final class OnboardingViewController: UIViewController {
     private func setupSlidesContent() {
         slides = [
             OnboardingSlideModel(title: "A huge assortment of food to choose from in your device", subtitle: "Order as many as you like.", image: "onboarding1"),
-            OnboardingSlideModel(title: "Make an order in a few seconds", subtitle: "A couple of clicks and you're already happy.", image: "onboarding2"),
+            OnboardingSlideModel(title: "Make an order in a few seconds", subtitle: "A couple of taps and you're already happy.", image: "onboarding2"),
             OnboardingSlideModel(title: "Five star delivery", subtitle: "Traffic jams are not a problem for us.", image: "onboarding3"),
             OnboardingSlideModel(title: "Stock up on groceries for the weeks ahead", subtitle: "No more going to the store and waiting in line.", image: "onboarding4"),
             OnboardingSlideModel(title: "All your favorites", subtitle: "Order from the best local restaurants with easy, on-demand delivery.", image: "onboarding5"),
