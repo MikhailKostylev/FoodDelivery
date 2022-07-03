@@ -23,13 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Private methods
     
     private func setupNavBar() {
-        UINavigationBar.appearance().titleTextAttributes = configureTitleTextAttributes()
+        UINavigationBar.appearance().titleTextAttributes = configureNavBarTitle()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().tintColor = .label
     }
     
-    private func configureTitleTextAttributes() -> [NSAttributedString.Key: NSObject] {
+    private func configureNavBarTitle() -> [NSAttributedString.Key: NSObject] {
         let myShadow = NSShadow()
         myShadow.shadowBlurRadius = 3
         myShadow.shadowOffset = CGSize(width: 1, height: 1)

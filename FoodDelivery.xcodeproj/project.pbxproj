@@ -161,7 +161,7 @@
 		1F65791F286DE37F005B6897 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1FA3593F28676A2100F2750D /* Welcome Module */,
+				1FA3593F28676A2100F2750D /* Onboarding Module */,
 				1FA3593E28674CD500F2750D /* Main Module */,
 				1FAAC40D286CDDC2001CA495 /* Order List Module */,
 				1F1B3C05286C9CA400D824E3 /* Dish List Module */,
@@ -251,14 +251,14 @@
 			path = "Main Module";
 			sourceTree = "<group>";
 		};
-		1FA3593F28676A2100F2750D /* Welcome Module */ = {
+		1FA3593F28676A2100F2750D /* Onboarding Module */ = {
 			isa = PBXGroup;
 			children = (
 				1FA3594428676BB100F2750D /* Model */,
 				1FA3594628676BC400F2750D /* View */,
 				1FA3594528676BBB00F2750D /* Controller */,
 			);
-			path = "Welcome Module";
+			path = "Onboarding Module";
 			sourceTree = "<group>";
 		};
 		1FA3594428676BB100F2750D /* Model */ = {
